@@ -5,8 +5,6 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
-app = Flask(__name__)
-app.secret_key = "dev"
 
 
 class User(db.Model):
@@ -19,7 +17,7 @@ class User(db.Model):
                         primary_key=True)
     fname = db.Column(db.String(15), nullable=False)
     lname = db.Column(db.String(20), nullable=False)
-    email = db.Column(db.String(50), unique=True)
+    email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(20), nullable=False)
     phone_number = db.Column(db.String(10), nullable=False)
     last_appointment = db.Column(db.DateTime)
@@ -104,4 +102,6 @@ def connect_to_db(app, db_uri='postgresql:///appointments'):
 
 
 if __name__ == '__main__':
+    from server import app
+
     connect_to_db(app)
