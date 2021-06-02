@@ -36,12 +36,18 @@ def handle_session_form():
     return render_template('homepage.html', session=session)
 
 
-# @app.route('/handle-log-in', methods=["POST"])
-# def handle_login():
-#     """Log user into the application"""
+@app.route('/create-account')
+def render_create_account_form():
+    """Renders form for user to create an account"""
 
-#     username = request.form['username']
-#     password = request.form['password']
+    return render_template('create_account.html')
+
+
+@app.route('/handle-create-account')
+def create_user_account():
+    """Creates user account based off info provided in form"""
+
+    
 
 
 if __name__ == '__main__':
