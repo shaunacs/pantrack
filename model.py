@@ -91,16 +91,30 @@ class Household(db.Model):
 def create_sample_data():
     """Create some sample data for PanTrack"""
 
+    AppointmentSlot.query.delete()
+    Household.query.delete()
+    User.query.delete()
+    Appointment.query.delete()
+
     #Test AppointmentSlot
     appt_slot = AppointmentSlot(start_time=datetime(2021, 6, 3, 10, 30),
                                 end_time=datetime(2021, 6, 3, 10, 45),
                                 date=datetime(2021, 6, 3))
+
+    db.session.add(appt_slot)
+    db.session.commit()
+    print(f'appt_slot= {appt_slot}')
     
     #Test Household
     household = Household(num_people=4,
                             wants_peanut_butter=False,
                             allergies='peanuts',
                             picking_up_for_another=False)
+    
+    db.session.add(household)
+    db.session.commit()
+    print(f'household= {household}')
+
     
     #Test User
     user = User(fname='Test',
@@ -110,9 +124,17 @@ def create_sample_data():
                 phone_number='5555555555',
                 household_id=household.household_id)
     
+    db.session.add(user)
+    db.session.commit()
+    print(f'user= {user}')
+    
     #Test Appointment
     appt = Appointment(user_id=user.user_id,
                         appointment_slot_id=appt_slot.appointment_slot_id)
+    
+    db.session.add(appt)
+    db.session.commit()
+    print(f'appt= {appt}')
 
 
 
