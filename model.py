@@ -25,7 +25,7 @@ class User(db.Model):
     household_id = db.Column(db.Integer, db.ForeignKey('households.household_id'))
 
     household = db.relationship('Household', backref='user')
-    appointment = db.relationship('Appointment', backref='user')
+    appointments = db.relationship('Appointment', backref='user')
 
     def __repr__(self):
         return f'<User user_id={self.user_id} name={self.fname} {self.lname}>'
@@ -86,6 +86,35 @@ class Household(db.Model):
 
     def __repr__(self):
         return f'<Household household_id={self.household_id} num_people={self.num_people}>'
+
+
+def create_sample_data():
+    """Create some sample data for PanTrack"""
+
+    #Test AppointmentSlot
+    appt_slot = AppointmentSlot(start_time=datetime(2021, 6, 3, 10, 30),
+                                end_time=datetime(2021, 6, 3, 10, 45),
+                                date=datetime(2021, 6, 3))
+    
+    #Test Household
+    household = Household(num_people=4,
+                            wants_peanut_butter=False,
+                            allergies='peanuts',
+                            picking_up_for_another=False)
+    
+    #Test User
+    user = User(fname='Test',
+                lname='Tester',
+                email='test@test.test',
+                password='testttt',
+                phone_number='5555555555',
+                household_id=household.household_id)
+    
+    #Test Appointment
+    appt = Appointment(user_id=user.user_id,
+                        appointment_slot_id=appt_slot.appointment_slot_id)
+
+
 
 
 def connect_to_db(app, db_uri='postgresql:///appointments'):
