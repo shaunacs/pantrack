@@ -149,6 +149,7 @@ def connect_to_db(app, db_uri='postgresql:///appointments'):
     db.app = app
     db.init_app(app)
 
+
     print('Connected to the db!')
 
 

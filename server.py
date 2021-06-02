@@ -4,6 +4,7 @@ from flask import (Flask, render_template, request, flash, session,
                     redirect)
 from model import connect_to_db
 from jinja2 import StrictUndefined
+import crud
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -43,11 +44,21 @@ def render_create_account_form():
     return render_template('create_account.html')
 
 
-@app.route('/handle-create-account')
+@app.route('/handle-create-account', methods=["POST"])
 def create_user_account():
     """Creates user account based off info provided in form"""
 
-    
+    fname = request.form['fname']
+    lname = request.form['lname']
+    email = request.form['email']
+    password = request.form['password']
+    phone_number = request.form['phone-number']
+
+    new_user = crud.create_user(fname, lname, email, password, phone_number)
+
+    return render_template('homepage.html')
+
+
 
 
 if __name__ == '__main__':
