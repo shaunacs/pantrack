@@ -46,8 +46,14 @@ def handle_log_in():
     username = request.form.get("username")
     password = request.form.get("password")
 
+    
     user = User.query.filter_by(username=username).first()
-    # print(user)
+
+
+    if user is None:
+        flash("Sorry try again.")
+        return redirect("/")
+
 
     if user.password == password:
         # Call flask_login.login_user to login a user
@@ -88,7 +94,13 @@ def create_user_account():
 
     new_user = crud.create_user(fname, lname, email, username, password, phone_number)
 
-    return render_template('homepage.html', user=new_user)
+    login_user(new_user)
+    session['username'] = request.form['username']
+    session['password'] = request.form['password']
+
+    return redirect('/')
+
+    # return render_template('homepage.html')
 
 
 
