@@ -4,4 +4,8 @@
 {% block body %}
 <h1>Welcome to PanTrack</h1>
 <h2>Schedule your food pantry appointment here</h2>
+{% if current_user.is_authenticated %}
+  Welcome, {{ current_user.fname }}
+{% endif %}
+
 {% endblock %}

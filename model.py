@@ -3,11 +3,12 @@
 from flask import Flask
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     """A food pantry user"""
 
     __tablename__ = "users"
@@ -18,6 +19,7 @@ class User(db.Model):
     fname = db.Column(db.String(15), nullable=False)
     lname = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(100), unique=True)
+    username = db.Column(db.String(30), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
     phone_number = db.Column(db.String(10), nullable=False)
     last_appointment = db.Column(db.DateTime)
@@ -26,6 +28,13 @@ class User(db.Model):
 
     household = db.relationship('Household', backref='user')
     appointments = db.relationship('Appointment', backref='user')
+
+
+    def get_id(self):
+        """Override UserMixin.get_id"""
+
+        return str(self.user_id)
+
 
     def __repr__(self):
         return f'<User user_id={self.user_id} name={self.fname} {self.lname}>'
