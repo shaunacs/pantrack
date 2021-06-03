@@ -56,11 +56,11 @@ def create_user_account():
 
     new_user = crud.create_user(fname, lname, email, password, phone_number)
 
-    return render_template('homepage.html')
+    return render_template('homepage.html', user=new_user)
 
 
 
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True, use_reloader=True, use_debugger=True)
