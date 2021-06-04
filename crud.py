@@ -1,5 +1,5 @@
 """PanTrack CRUD operations"""
-from datetime import datetime
+from datetime import datetime, date
 from model import db, User, Appointment, AppointmentSlot, Household, connect_to_db
 
 

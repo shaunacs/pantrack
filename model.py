@@ -1,7 +1,7 @@
 """Models for PanTrack app"""
 
 from flask import Flask
-from datetime import datetime
+from datetime import datetime, date
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
@@ -70,7 +70,7 @@ class AppointmentSlot(db.Model):
                                     primary_key=True)
     start_time = db.Column(db.DateTime)
     end_time = db.Column(db.DateTime)
-    date = db.Column(db.DateTime)
+    date = db.Column(db.Date)
 
     #appointment = appointment made for the slot
 
@@ -122,7 +122,7 @@ def create_sample_data():
     #Test AppointmentSlot
     appt_slot = AppointmentSlot(start_time=datetime(2021, 6, 3, 10, 30),
                                 end_time=datetime(2021, 6, 3, 10, 45),
-                                date=datetime(2021, 6, 3))
+                                date=date(2021, 6, 3))
 
     db.session.add(appt_slot)
     db.session.commit()
