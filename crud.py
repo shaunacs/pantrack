@@ -27,7 +27,15 @@ def create_appointment_slot(start_time, end_time, date):
     return appt_slot
 
 
+def create_appointment(user, appt_slot):
+    """Creates an appointment for a user"""
 
+    appt = Appointment(user_id=user.user_id, appointment_slot_id=appt_slot.appointment_slot_id)
+
+    db.session.add(appt)
+    db.session.commit()
+
+    return appt
 
 
 if __name__ == '__main__':
