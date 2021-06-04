@@ -38,6 +38,11 @@ def create_appointment(user, appt_slot):
     return appt
 
 
+def create_household(num_people, wants_peanut_butter, picking_up_for_another,
+                    allergies=None, special_requests=None):
+    """Creates a Household object for a user"""
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

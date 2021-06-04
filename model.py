@@ -24,9 +24,9 @@ class User(db.Model, UserMixin):
     phone_number = db.Column(db.String(10), nullable=False)
     last_appointment = db.Column(db.DateTime)
     is_admin = db.Column(db.Boolean)
-    household_id = db.Column(db.Integer, db.ForeignKey('households.household_id'))
+    # household_id = db.Column(db.Integer, db.ForeignKey('households.household_id'))
 
-    household = db.relationship('Household', backref='user')
+    # household = db.relationship('Household', backref='user')
     appointments = db.relationship('Appointment', backref='user')
 
 
@@ -50,8 +50,10 @@ class Appointment(db.Model):
                                 primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     appointment_slot_id = db.Column(db.Integer, db.ForeignKey('appointment_slots.appointment_slot_id'))
+    household_id = db.Column(db.Integer, db.ForeignKey('households.household_id'))
 
     appointment_slot = db.relationship('AppointmentSlot', backref='appointment')
+    household = db.relationship('Household', backref='appointment')
 
     # user = user associated with appointment
 
@@ -86,12 +88,13 @@ class Household(db.Model):
                                 autoincrement=True,
                                 primary_key=True)
     num_people = db.Column(db.Integer, nullable=False)
-    wants_peanut_butter = db.Column(db.Boolean)
+    wants_peanut_butter = db.Column(db.Boolean, nullable=False)
+    picking_up_for_another = db.Column(db.Boolean, nullable=False)
     allergies = db.Column(db.String(30))
-    picking_up_for_another = db.Column(db.Boolean)
     special_requests = db.Column(db.Text)
 
-    # user = a list of users in household
+    #appointment = appointment for this household
+
 
     def __repr__(self):
         return f'<Household household_id={self.household_id} num_people={self.num_people}>'
@@ -104,6 +107,18 @@ def create_sample_data():
     Household.query.delete()
     User.query.delete()
     Appointment.query.delete()
+
+    #Test User
+    user = User(fname='Test',
+                lname='Tester',
+                email='test@test.test',
+                username='testy',
+                password='testttt',
+                phone_number='5555555555')
+    
+    db.session.add(user)
+    db.session.commit()
+    print(f'user= {user}')
 
     #Test AppointmentSlot
     appt_slot = AppointmentSlot(start_time=datetime(2021, 6, 3, 10, 30),
@@ -125,21 +140,10 @@ def create_sample_data():
     print(f'household= {household}')
 
     
-    #Test User
-    user = User(fname='Test',
-                lname='Tester',
-                email='test@test.test',
-                password='testttt',
-                phone_number='5555555555',
-                household_id=household.household_id)
-    
-    db.session.add(user)
-    db.session.commit()
-    print(f'user= {user}')
-    
     #Test Appointment
     appt = Appointment(user_id=user.user_id,
-                        appointment_slot_id=appt_slot.appointment_slot_id)
+                        appointment_slot_id=appt_slot.appointment_slot_id,
+                        household_id=household.household_id)
     
     db.session.add(appt)
     db.session.commit()
