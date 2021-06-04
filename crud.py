@@ -14,3 +14,22 @@ def create_user(fname, lname, email, username, password, phone_number):
     db.session.commit()
 
     return user
+
+
+def create_appointment_slot(start_time, end_time, date):
+    """Creates an available appointment slot"""
+
+    appt_slot = AppointmentSlot(start_time=start_time, end_time=end_time, date=date)
+
+    db.session.add(appt_slot)
+    db.session.commit()
+
+    return appt_slot
+
+
+
+
+
+if __name__ == '__main__':
+    from server import app
+    connect_to_db(app)
