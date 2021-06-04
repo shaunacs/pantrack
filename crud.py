@@ -27,20 +27,35 @@ def create_appointment_slot(start_time, end_time, date):
     return appt_slot
 
 
-def create_appointment(user, appt_slot):
+def create_household(num_people, wants_peanut_butter, picking_up_for_another,
+                    allergies=None, special_requests=None):
+    """Creates a Household object for a user"""
+
+    household = Household(num_people=num_people,
+                            wants_peanut_butter=wants_peanut_butter,
+                            picking_up_for_another=picking_up_for_another,
+                            allergies=allergies,
+                            special_requests=special_requests)
+    
+    db.session.add(household)
+    db.session.commit()
+
+    return household
+
+
+
+def create_appointment(user, appt_slot, household):
     """Creates an appointment for a user"""
 
-    appt = Appointment(user_id=user.user_id, appointment_slot_id=appt_slot.appointment_slot_id)
+    appt = Appointment(user_id=user.user_id,
+                        appointment_slot_id=appt_slot.appointment_slot_id,
+                        household_id=household.household_id)
 
     db.session.add(appt)
     db.session.commit()
 
     return appt
 
-
-def create_household(num_people, wants_peanut_butter, picking_up_for_another,
-                    allergies=None, special_requests=None):
-    """Creates a Household object for a user"""
 
 
 if __name__ == '__main__':

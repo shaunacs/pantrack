@@ -22,7 +22,6 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(30), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
     phone_number = db.Column(db.String(10), nullable=False)
-    last_appointment = db.Column(db.DateTime)
     is_admin = db.Column(db.Boolean)
     # household_id = db.Column(db.Integer, db.ForeignKey('households.household_id'))
 
