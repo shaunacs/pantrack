@@ -127,6 +127,29 @@ def render_schedule_appointment_page():
     return render_template('schedule_appointment.html', available_appts=available_appts)
 
 
+@app.route('/household-info')
+def render_household_form():
+    """Renders form to get info about household"""
+
+    return render_template('household_form.html')
+
+
+
+# @app.route('/handle-household-info', methods=["POST"])
+# def handle_household_info():
+#     """Creates a household using user input"""
+
+
+
+# @app.route('/handle-schedule-appt', methods=["POST"])
+# def handle_schedule_appointment():
+#     """Schedules user for appointment at selected appointment time"""
+
+#     user_appt_slot = request.form['appt_slot']
+
+
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(debug=True, use_reloader=True, use_debugger=True)
