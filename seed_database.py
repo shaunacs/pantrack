@@ -5,6 +5,7 @@ from datetime import datetime, date, timedelta, time
 import crud
 import model
 import server
+from random import choice, randint
 
 os.system('dropdb appointments')
 os.system('createdb appointments')
@@ -35,6 +36,20 @@ while start_time <= end_appts:
     start_time += delta
 
 
+# Create test appointments
+
+all_users = model.User.query.all()
+for user in all_users:
+    num_people = randint(1, 5)
+    wants_peanut_butter = choice([True, False])
+    picking_up_for_another = choice([True, False])
+
+    user_household = crud.create_household(num_people, wants_peanut_butter,
+                                        picking_up_for_another)
+    
+    available_appts = model.AppointmentSlot.query.all()
+    user_appt_slot = available_appts[user.user_id]
+    user_appt = crud.create_appointment(user, user_appt_slot, user_household)
 
 
 

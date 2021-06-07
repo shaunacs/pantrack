@@ -57,6 +57,12 @@ def create_appointment(user, appt_slot, household):
     return appt
 
 
+def view_all_users():
+    """Returns all users"""
+
+    return User.query.all()
+
+
 
 if __name__ == '__main__':
     from server import app
