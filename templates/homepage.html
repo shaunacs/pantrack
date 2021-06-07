@@ -2,10 +2,15 @@
 {% block title %}PanTrack Home{% endblock %}
 
 {% block body %}
-<h1>Welcome to PanTrack</h1>
-<h2>Schedule your food pantry appointment here</h2>
+<h1>Welcome to PanTrack, {{ current_user.fname }}</h1>
+<h2>Schedule your food pantry appointment here!</h2>
+<div id="next-appt">Your next appointment is: <br>
+  {{ user_next_appt }}</div>
 {% if current_user.is_authenticated %}
-  Welcome, {{ current_user.fname }}
+  <form action="/logout">
+    <button id="log-out-button">Log Out</button>
+  </form>
 {% endif %}
+
 
 {% endblock %}

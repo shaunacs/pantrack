@@ -5,7 +5,8 @@ from flask import (Flask, render_template, request, flash, session,
 from model import connect_to_db, User
 from jinja2 import StrictUndefined
 import crud
-from flask_login import LoginManager, login_user, login_required
+from flask_login import (LoginManager, login_user, login_required,
+                        logout_user, current_user)
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -23,25 +24,26 @@ def load_user(user_id):
 def render_hompeage():
     """Displays the homepage is user in session"""
 
-    if 'username' in session:
-        return render_template('homepage.html')
+    # user = User.query.filter_by(username=session['username']).first()
+
+    # if len(user.appointments) != 0:
+    #     user_next_appt = user.appointments[-1]
+
+    if current_user.is_authenticated:
+        user = User.query.filter_by(username=session['username']).first()
+        if len(user.appointments) != 0:
+            user_next_appt = user.appointments[-1].appointment_slot.start_time
+        else:
+            user_next_appt = "You do not yet have an appointment. Schedule one now."
+        return render_template('homepage.html', user_next_appt=user_next_appt)
     else:
         return render_template('log_in_page.html')
 
-
-# @app.route('/log-in')
-# def render_user_log_in():
-#     """Renders page for user to log in"""
-
-#     return render_template('log_in_page.html')
 
 
 @app.route('/log-in', methods=["POST"])
 def handle_log_in():
     """Save session and return to homepage and process log in"""
-
-    # session['username'] = request.form['username']
-    # session['password'] = request.form['password']
 
     username = request.form.get("username")
     password = request.form.get("password")
@@ -73,6 +75,14 @@ def handle_log_in():
 
     # return render_template('homepage.html', session=session)
 
+
+@app.route('/logout')
+@login_required
+def logout():
+    # username = session['username']
+    # user = User.query.filter_by(username=username).first()
+    logout_user()
+    return render_template('log_in_page.html')
 
 @app.route('/create-account')
 def render_create_account_form():
