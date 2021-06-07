@@ -38,7 +38,7 @@ while start_time <= end_appts:
 
 # Create test appointments
 
-all_users = model.User.query.all()
+all_users = crud.view_all_users()
 for user in all_users:
     num_people = randint(1, 5)
     wants_peanut_butter = choice([True, False])
@@ -47,7 +47,7 @@ for user in all_users:
     user_household = crud.create_household(num_people, wants_peanut_butter,
                                         picking_up_for_another)
     
-    available_appts = model.AppointmentSlot.query.all()
+    available_appts = crud.view_all_appt_slots()
     user_appt_slot = available_appts[user.user_id]
     user_appt = crud.create_appointment(user, user_appt_slot, user_household)
 

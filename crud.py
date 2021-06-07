@@ -63,6 +63,12 @@ def view_all_users():
     return User.query.all()
 
 
+def view_all_appt_slots():
+    """Returns all appointment slots"""
+
+    return AppointmentSlot.query.all()
+
+
 
 if __name__ == '__main__':
     from server import app
