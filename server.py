@@ -2,7 +2,7 @@
 
 from flask import (Flask, render_template, request, flash, session,
                     redirect)
-from model import connect_to_db, User
+from model import connect_to_db, User, AppointmentSlot
 from jinja2 import StrictUndefined
 import crud
 from flask_login import (LoginManager, login_user, login_required,
@@ -115,16 +115,16 @@ def create_user_account():
 
     # return render_template('homepage.html')
 
-@app.route('/schedule-appointment')
-def render_schedule_appointment_page():
-    """Renders page to schedule an appointment"""
+# @app.route('/schedule-appointment')
+# def render_schedule_appointment_page():
+#     """Renders page to schedule an appointment"""
 
-    available_appts = []
-    all_appt_slots = crud.view_all_appt_slots()
-    for appt_slot in all_appt_slots:
-        if appt_slot.appointment == []:
-            available_appts.append(appt_slot)
-    return render_template('schedule_appointment.html', available_appts=available_appts)
+#     available_appts = []
+#     all_appt_slots = crud.view_all_appt_slots()
+#     for appt_slot in all_appt_slots:
+#         if appt_slot.appointment == []:
+#             available_appts.append(appt_slot)
+#     return render_template('schedule_appointment.html', available_appts=available_appts)
 
 
 @app.route('/household-info')
@@ -135,9 +135,25 @@ def render_household_form():
 
 
 
-# @app.route('/handle-household-info', methods=["POST"])
-# def handle_household_info():
-#     """Creates a household using user input"""
+@app.route('/handle-household-info', methods=["POST"])
+def handle_household_info():
+    """Creates a household using user input"""
+
+    num_people = request.form['num-people']
+    wants_peanut_butter = bool(request.form['wants-peanut-butter'])
+    picking_up_for_another = bool(request.form['picking-up-for-another'])
+    
+    user_household = crud.create_household(num_people, wants_peanut_butter,
+                        picking_up_for_another)
+    
+    available_appts = []
+    all_appt_slots = crud.view_all_appt_slots()
+    for appt_slot in all_appt_slots:
+        if appt_slot.appointment == []:
+            available_appts.append(appt_slot)
+    
+    return render_template('schedule_appointment.html', user_household=user_household,
+                            available_appts=available_appts)
 
 
 
@@ -146,6 +162,8 @@ def render_household_form():
 #     """Schedules user for appointment at selected appointment time"""
 
 #     user_appt_slot = request.form['appt_slot']
+
+
 
 
 

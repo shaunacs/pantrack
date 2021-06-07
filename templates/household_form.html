@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Household Info{% endblock %}
 {% block body %}
-<form>
+<form action="/handle-household-info" method="POST">
     <input type="number" name="num-people">
     <label>Number of people in household</label><br>
 
