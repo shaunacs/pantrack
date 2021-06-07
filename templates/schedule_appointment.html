@@ -2,5 +2,8 @@
 {% block title %}Schedule Appointment{% endblock %}
 
 {% block body %}
+{% for appt_slot in available_appts %}
+    <button id="appt-time-slot">{{ appt_slot.start_time }}</button><br>
+{% endfor %}
 
 {% endblock %}

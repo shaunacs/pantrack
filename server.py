@@ -119,7 +119,12 @@ def create_user_account():
 def render_schedule_appointment_page():
     """Renders page to schedule an appointment"""
 
-    return render_template('schedule_appointment.html')
+    available_appts = []
+    all_appt_slots = crud.view_all_appt_slots()
+    for appt_slot in all_appt_slots:
+        if appt_slot.appointment == []:
+            available_appts.append(appt_slot)
+    return render_template('schedule_appointment.html', available_appts=available_appts)
 
 
 if __name__ == '__main__':
