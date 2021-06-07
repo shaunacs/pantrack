@@ -6,6 +6,11 @@
 <h2>Schedule your food pantry appointment here!</h2>
 <div id="next-appt">Your next appointment is: <br>
   {{ user_next_appt }}</div>
+
+{% if has_appt == False %}
+<p>Schedule an appointment <a href="/schedule-appointment">here</a></p>
+{% endif %}
+
 {% if current_user.is_authenticated %}
   <form action="/logout">
     <button id="log-out-button">Log Out</button>

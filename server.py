@@ -32,10 +32,13 @@ def render_hompeage():
     if current_user.is_authenticated:
         user = User.query.filter_by(username=session['username']).first()
         if len(user.appointments) != 0:
+            has_appt = True
             user_next_appt = user.appointments[-1].appointment_slot.start_time
         else:
+            has_appt = False
             user_next_appt = "You do not yet have an appointment. Schedule one now."
-        return render_template('homepage.html', user_next_appt=user_next_appt)
+        return render_template('homepage.html', user_next_appt=user_next_appt,
+                                has_appt=has_appt)
     else:
         return render_template('log_in_page.html')
 
@@ -112,7 +115,11 @@ def create_user_account():
 
     # return render_template('homepage.html')
 
+@app.route('/schedule-appointment')
+def render_schedule_appointment_page():
+    """Renders page to schedule an appointment"""
 
+    return render_template('schedule_appointment.html')
 
 
 if __name__ == '__main__':
