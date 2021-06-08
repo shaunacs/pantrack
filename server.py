@@ -68,8 +68,8 @@ def handle_log_in():
         flash("Logged in successfully!")
 
         #Add user to session
-        session['username'] = request.form['username']
-        session['password'] = request.form['password']
+        session['username'] = request.form.get('username')
+        session['password'] = request.form.get('password')
 
         return redirect('/')
     
@@ -99,18 +99,18 @@ def render_create_account_form():
 def create_user_account():
     """Creates user account based off info provided in form"""
 
-    fname = request.form['fname']
-    lname = request.form['lname']
-    email = request.form['email']
-    username = request.form['username']
-    password = request.form['password']
-    phone_number = request.form['phone-number']
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    email = request.form.get('email')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    phone_number = request.form.get('phone-number')
 
     new_user = crud.create_user(fname, lname, email, username, password, phone_number)
 
     login_user(new_user)
-    session['username'] = request.form['username']
-    session['password'] = request.form['password']
+    session['username'] = request.form.get('username')
+    session['password'] = request.form.get('password')
 
     return redirect('/')
 
@@ -141,9 +141,9 @@ def handle_household_info():
     """Creates a household using user input"""
 
     user = crud.find_user_by_username()
-    num_people = request.form['num-people']
-    wants_peanut_butter = bool(request.form['wants-peanut-butter'])
-    picking_up_for_another = bool(request.form['picking-up-for-another'])
+    num_people = request.form.get('num-people')
+    wants_peanut_butter = bool(request.form.get('wants-peanut-butter'))
+    picking_up_for_another = bool(request.form.get('picking-up-for-another'))
     
     user_household = crud.create_household(user, num_people, wants_peanut_butter,
                         picking_up_for_another)
@@ -165,18 +165,18 @@ def handle_schedule_appointment():
 
     user = crud.find_user_by_username()
 
-    selected_appt_slot = request.form['appt_slot']
-    print("*" * 20)
-    print(selected_appt_slot)
-    # all_appt_slots = crud.view_all_appt_slots()
-    # appt_slot_obj = ""
-    # for appt_slot in all_appt_slots:
-    #     if str(appt_slot) == selected_appt_slot:
-    #         appt_slot_obj = appt_slot
+    selected_appt_slot = request.form.get('appt_slot')
+    # print("*" * 20)
+    # print(selected_appt_slot)
+    all_appt_slots = crud.view_all_appt_slots()
+    appt_slot_obj = ""
+    for appt_slot in all_appt_slots:
+        if str(appt_slot) == selected_appt_slot:
+            appt_slot_obj = appt_slot
 
-    # household = Household.query.filter_by(user_id=user.user_id)[-1]
+    household = Household.query.filter_by(user_id=user.user_id)[-1]
 
-    # appt = crud.create_appointment(user, appt_slot_obj, household)
+    appt = crud.create_appointment(user, selected_appt_slot, household)
 
     return redirect('/')
  
