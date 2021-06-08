@@ -7,6 +7,7 @@ from jinja2 import StrictUndefined
 import crud
 from flask_login import (LoginManager, login_user, login_required,
                         logout_user, current_user)
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -31,10 +32,14 @@ def render_hompeage():
 
     if current_user.is_authenticated:
         user = crud.find_user_by_username()
-        # user = User.query.filter_by(username=session['username']).first()
+
         if len(user.appointments) != 0:
-            has_appt = True
             user_next_appt = user.appointments[-1].appointment_slot.start_time
+            if datetime.now() <= user_next_appt:
+                has_appt = True
+            else:
+                user_next_appt = "You do not yet have an appointment. Schedule one now."
+                has_appt = False
         else:
             has_appt = False
             user_next_appt = "You do not yet have an appointment. Schedule one now."
