@@ -157,7 +157,11 @@ def handle_schedule_appointment():
     return redirect('/')
  
 
-# @app.route('/appointments')
+@app.route('/appointments')
+def render_appts_page():
+    """Renders the appointments page"""
+
+    return render_template('appointments.html')
 
 
 

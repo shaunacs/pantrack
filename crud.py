@@ -71,6 +71,19 @@ def view_all_appt_slots():
     return AppointmentSlot.query.all()
 
 
+def view_all_upcoming_appts():
+    """Returns all appointments that have not yet passed"""
+
+    all_appts = Appointment.query.all()
+    upcoming_appts = []
+
+    for appt in all_appts:
+        if appt.appointment_slot.date >= date.today():
+            upcoming_appts.append(appt)
+    
+    return upcoming_appts
+
+
 def find_user_by_username():
     """Finds a user associated with username in session"""
 
