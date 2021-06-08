@@ -30,7 +30,8 @@ def render_hompeage():
     #     user_next_appt = user.appointments[-1]
 
     if current_user.is_authenticated:
-        user = User.query.filter_by(username=session['username']).first()
+        user = crud.find_user_by_username()
+        # user = User.query.filter_by(username=session['username']).first()
         if len(user.appointments) != 0:
             has_appt = True
             user_next_appt = user.appointments[-1].appointment_slot.start_time
@@ -161,6 +162,8 @@ def handle_household_info():
 # def handle_schedule_appointment():
 #     """Schedules user for appointment at selected appointment time"""
 
+#     username = session['username']
+#     user = User.query.filter_by()
 #     user_appt_slot = request.form['appt_slot']
 
 

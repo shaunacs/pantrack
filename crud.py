@@ -1,6 +1,7 @@
 """PanTrack CRUD operations"""
 from datetime import datetime, date
 from model import db, User, Appointment, AppointmentSlot, Household, connect_to_db
+from flask import session
 
 
 def create_user(fname, lname, email, username, password, phone_number):
@@ -67,6 +68,14 @@ def view_all_appt_slots():
     """Returns all appointment slots"""
 
     return AppointmentSlot.query.all()
+
+
+def find_user_by_username():
+    """Finds a user associated with username in session"""
+
+    user = User.query.filter_by(username=session['username']).first()
+
+    return user
 
 
 
