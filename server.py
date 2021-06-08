@@ -2,7 +2,7 @@
 
 from flask import (Flask, render_template, request, flash, session,
                     redirect)
-from model import connect_to_db, User, AppointmentSlot
+from model import connect_to_db, User, AppointmentSlot, Household
 from jinja2 import StrictUndefined
 import crud
 from flask_login import (LoginManager, login_user, login_required,
@@ -159,17 +159,26 @@ def handle_household_info():
 
 
 
-# @app.route('/handle-schedule-appt', methods=["POST"])
-# def handle_schedule_appointment():
-#     """Schedules user for appointment at selected appointment time"""
+@app.route('/handle-schedule-appt', methods=["POST"])
+def handle_schedule_appointment():
+    """Schedules user for appointment at selected appointment time"""
 
-#     user = crud.find_user_by_username()
-#     selected_appt_slot = request.form['appt_slot']
-#     household = request.args['household']
+    user = crud.find_user_by_username()
 
-#     appt = crud.create_appointment(user, selected_appt_slot, household)
+    selected_appt_slot = request.form['appt_slot']
+    print("*" * 20)
+    print(selected_appt_slot)
+    # all_appt_slots = crud.view_all_appt_slots()
+    # appt_slot_obj = ""
+    # for appt_slot in all_appt_slots:
+    #     if str(appt_slot) == selected_appt_slot:
+    #         appt_slot_obj = appt_slot
 
-#     return redirect('/')
+    # household = Household.query.filter_by(user_id=user.user_id)[-1]
+
+    # appt = crud.create_appointment(user, appt_slot_obj, household)
+
+    return redirect('/')
  
 
 
