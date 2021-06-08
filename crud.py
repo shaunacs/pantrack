@@ -79,6 +79,18 @@ def find_user_by_username():
     return user
 
 
+def string_to_ApptSlot(appt_slot_str):
+    """Takes in string AppointmentSlot and turns into an object"""
+
+    appt_slot_str = appt_slot_str
+    date_format = "%Y-%m-%d %H:%M:%S"
+    appt_slot_start = datetime.strptime(appt_slot_str, date_format)
+
+    appt_slot = AppointmentSlot.query.filter_by(start_time=appt_slot_start).first()
+
+    return appt_slot
+
+
 
 if __name__ == '__main__':
     from server import app

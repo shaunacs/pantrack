@@ -166,17 +166,18 @@ def handle_schedule_appointment():
     user = crud.find_user_by_username()
 
     selected_appt_slot = request.form.get('appt_slot')
-    # print("*" * 20)
-    # print(selected_appt_slot)
-    all_appt_slots = crud.view_all_appt_slots()
-    appt_slot_obj = ""
-    for appt_slot in all_appt_slots:
-        if str(appt_slot) == selected_appt_slot:
-            appt_slot_obj = appt_slot
+    print("*" * 20)
+    print(selected_appt_slot)
+    print(type(selected_appt_slot))
+    # all_appt_slots = crud.view_all_appt_slots()
+    # appt_slot_obj = ""
+    # for appt_slot in all_appt_slots:
+    #     if str(appt_slot) == selected_appt_slot:
+    #         appt_slot_obj = appt_slot
 
-    household = Household.query.filter_by(user_id=user.user_id)[-1]
+    # household = Household.query.filter_by(user_id=user.user_id)[-1]
 
-    appt = crud.create_appointment(user, selected_appt_slot, household)
+    # appt = crud.create_appointment(user, selected_appt_slot, household)
 
     return redirect('/')
  
