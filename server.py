@@ -161,7 +161,9 @@ def handle_schedule_appointment():
 def render_appts_page():
     """Renders the appointments page"""
 
-    return render_template('appointments.html')
+    upcoming_appts = crud.view_all_upcoming_appts()
+
+    return render_template('appointments.html', upcoming_appts=upcoming_appts)
 
 
 

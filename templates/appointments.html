@@ -9,10 +9,16 @@
         <th>Time</th>
         <th>Name</th>
     </tr>
-    <tr>
+    {% for appt in upcoming_appts %}
+        <tr>
+            <td>{{ appt.appointment_slot.start_time }}</td>
+            <td>{{ appt.user.fname }} {{ appt.user.lname }}</td>
+        </tr>
+    {% endfor %}
+    <!-- <tr>
         <td>9:00</td>
         <td>Test Name</td>
-    </tr>
+    </tr> -->
 </table>
 {% endblock %}
 
