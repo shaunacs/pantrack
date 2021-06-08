@@ -25,11 +25,6 @@ def load_user(user_id):
 def render_hompeage():
     """Displays the homepage is user in session"""
 
-    # user = User.query.filter_by(username=session['username']).first()
-
-    # if len(user.appointments) != 0:
-    #     user_next_appt = user.appointments[-1]
-
     if current_user.is_authenticated:
         user = crud.find_user_by_username()
 
@@ -80,16 +75,11 @@ def handle_log_in():
     
     flash("Sorry try again.")
     return redirect("/")
-  
-
-    # return render_template('homepage.html', session=session)
 
 
 @app.route('/logout')
 @login_required
 def logout():
-    # username = session['username']
-    # user = User.query.filter_by(username=username).first()
     logout_user()
     return render_template('log_in_page.html')
 
@@ -118,19 +108,6 @@ def create_user_account():
     session['password'] = request.form.get('password')
 
     return redirect('/')
-
-    # return render_template('homepage.html')
-
-# @app.route('/schedule-appointment')
-# def render_schedule_appointment_page():
-#     """Renders page to schedule an appointment"""
-
-#     available_appts = []
-#     all_appt_slots = crud.view_all_appt_slots()
-#     for appt_slot in all_appt_slots:
-#         if appt_slot.appointment == []:
-#             available_appts.append(appt_slot)
-#     return render_template('schedule_appointment.html', available_appts=available_appts)
 
 
 @app.route('/household-info')
@@ -180,7 +157,7 @@ def handle_schedule_appointment():
     return redirect('/')
  
 
-
+# @app.route('/appointments')
 
 
 
