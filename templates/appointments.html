@@ -11,7 +11,7 @@
     </tr>
     {% for appt in upcoming_appts %}
         <tr>
-            <td>{{ appt.appointment_slot.start_time }}</td>
+            <td>{{ appt.appointment_slot.start_time.time() }}</td>
             <td>{{ appt.user.fname }} {{ appt.user.lname }}</td>
         </tr>
     {% endfor %}

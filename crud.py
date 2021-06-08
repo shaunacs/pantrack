@@ -81,7 +81,13 @@ def view_all_upcoming_appts():
         if appt.appointment_slot.date >= date.today():
             upcoming_appts.append(appt)
     
+    # def date_key(a):
+    #     """Creates key for sorted function"""
+
+
     return upcoming_appts
+
+    # return sorted(upcoming_appts, key=
 
 
 def find_user_by_username():
