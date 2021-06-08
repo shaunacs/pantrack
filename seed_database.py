@@ -44,7 +44,7 @@ for user in all_users:
     wants_peanut_butter = choice([True, False])
     picking_up_for_another = choice([True, False])
 
-    user_household = crud.create_household(num_people, wants_peanut_butter,
+    user_household = crud.create_household(user, num_people, wants_peanut_butter,
                                         picking_up_for_another)
     
     available_appts = crud.view_all_appt_slots()

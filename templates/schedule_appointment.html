@@ -3,11 +3,11 @@
 
 {% block body %}
 <p>Choose a pick up time!</p>
-<!-- <form action="/handle-schedule-appt" method="POST"> -->
+<form action="/handle-schedule-appt" method="POST">
 {% for appt_slot in available_appts %}
     <input type="radio" name="appt_slot" value=appt_slot>
     <label>{{ appt_slot.start_time }}</label><br>
 {% endfor %}
 <input type="submit" name="submit">
-<!-- </form> -->
+</form>
 {% endblock %}

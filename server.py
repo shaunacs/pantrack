@@ -140,11 +140,12 @@ def render_household_form():
 def handle_household_info():
     """Creates a household using user input"""
 
+    user = crud.find_user_by_username()
     num_people = request.form['num-people']
     wants_peanut_butter = bool(request.form['wants-peanut-butter'])
     picking_up_for_another = bool(request.form['picking-up-for-another'])
     
-    user_household = crud.create_household(num_people, wants_peanut_butter,
+    user_household = crud.create_household(user, num_people, wants_peanut_butter,
                         picking_up_for_another)
     
     available_appts = []
@@ -153,7 +154,7 @@ def handle_household_info():
         if appt_slot.appointment == []:
             available_appts.append(appt_slot)
     
-    return render_template('schedule_appointment.html', user_household=user_household,
+    return render_template('schedule_appointment.html',
                             available_appts=available_appts)
 
 
@@ -162,9 +163,14 @@ def handle_household_info():
 # def handle_schedule_appointment():
 #     """Schedules user for appointment at selected appointment time"""
 
-#     username = session['username']
-#     user = User.query.filter_by()
-#     user_appt_slot = request.form['appt_slot']
+#     user = crud.find_user_by_username()
+#     selected_appt_slot = request.form['appt_slot']
+#     household = request.args['household']
+
+#     appt = crud.create_appointment(user, selected_appt_slot, household)
+
+#     return redirect('/')
+ 
 
 
 

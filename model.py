@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean)
     # household_id = db.Column(db.Integer, db.ForeignKey('households.household_id'))
 
-    # household = db.relationship('Household', backref='user')
+    # household = a list of household objects
     appointments = db.relationship('Appointment', backref='user')
 
 
@@ -86,6 +86,7 @@ class Household(db.Model):
     household_id = db.Column(db.Integer,
                                 autoincrement=True,
                                 primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     num_people = db.Column(db.Integer, nullable=False)
     wants_peanut_butter = db.Column(db.Boolean, nullable=False)
     picking_up_for_another = db.Column(db.Boolean, nullable=False)
@@ -93,6 +94,7 @@ class Household(db.Model):
     special_requests = db.Column(db.Text)
 
     #appointment = appointment for this household
+    user = db.relationship('User', backref="household")
 
 
     def __repr__(self):
@@ -129,7 +131,8 @@ def create_sample_data():
     print(f'appt_slot= {appt_slot}')
     
     #Test Household
-    household = Household(num_people=4,
+    household = Household(user_id=user.user_id,
+                            num_people=4,
                             wants_peanut_butter=False,
                             allergies='peanuts',
                             picking_up_for_another=False)
