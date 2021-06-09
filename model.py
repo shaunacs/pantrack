@@ -8,7 +8,7 @@ from flask_login import UserMixin
 db = SQLAlchemy()
 
 
-class Admin(db.Model):
+class Admin(db.Model, UserMixin):
     """An administrative user"""
 
     __tablename__ = "admins"
@@ -21,6 +21,11 @@ class Admin(db.Model):
     email = db.Column(db.String(100), unique=True)
     username = db.Column(db.String(30), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
+
+    def get_id(self):
+        """Override UserMixin.get_id"""
+
+        return str(self.admin_id)
 
     def __repr__(self):
         return f'<Admin admin_id={self.admin_id} fname={self.fname} lname={self.lname}>'

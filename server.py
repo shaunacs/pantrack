@@ -2,13 +2,12 @@
 
 from flask import (Flask, render_template, request, flash, session,
                     redirect)
-from model import connect_to_db, User, AppointmentSlot, Household
+from model import connect_to_db, User, AppointmentSlot, Household, Admin
 from jinja2 import StrictUndefined
 import crud
 from flask_login import (LoginManager, login_user, login_required,
                         logout_user, current_user)
 from datetime import datetime
-from flask_admin import Admin
 
 
 app = Flask(__name__)
@@ -18,17 +17,24 @@ app.jinja_env.undefined = StrictUndefined
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-admin = Admin(app)
-
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
 
+@login_manager.user_loader
+def load_admin(admin_id):
+    return Admin.query.get(admin_id) # ***
+
 
 @app.route('/')
 def render_hompeage():
     """Displays the homepage is user in session"""
+
+    if current_user.is_authenticated:
+        if session['admin'] == True:
+            return render_template('admin.html')
+
 
     if current_user.is_authenticated:
         user = crud.find_user_by_username()
@@ -62,8 +68,15 @@ def handle_log_in():
 
 
     if user is None:
-        flash("Sorry try again.")
-        return redirect("/")
+        admin = Admin.query.filter_by(username=username).first()
+        if admin is None:
+            flash("No user with that username")
+            return redirect("/")
+        else:
+            if admin.password == password:
+                login_user(admin) # ***
+                session['admin'] = True
+                return render_template('admin.html')
 
 
     if user.password == password:
@@ -75,6 +88,7 @@ def handle_log_in():
         #Add user to session
         session['username'] = request.form.get('username')
         session['password'] = request.form.get('password')
+        session['admin'] = False
 
         return redirect('/')
     
@@ -163,9 +177,11 @@ def handle_schedule_appointment():
  
 
 @app.route('/appointments')
+@login_required
 def render_appts_page():
     """Renders the appointments page"""
-
+    print("*" * 20)
+    print(current_user)
     upcoming_appts = crud.view_all_upcoming_appts()
 
     return render_template('appointments.html', upcoming_appts=upcoming_appts)
