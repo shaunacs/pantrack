@@ -24,14 +24,15 @@ for n in range(10):
     user = crud.create_user(fname, lname, email, username, password, phone_number)
 
 # create test appointment slots
-date = date(2021, 6, 15)
+# date = date(2021, 6, 15)
 # end_date = date(2021, 6, 14)
 delta = timedelta(minutes=15)
 start_time = datetime(2021, 6, 15, 9, 0)
-end_appts = datetime(2021, 6, 15, 12, 0)
+end_appts = datetime(2021, 6, 16, 12, 0)
 
 while start_time <= end_appts:
     end_time = start_time + delta
+    date = start_time.date()
     appt_slot = crud.create_appointment_slot(start_time, end_time, date)
     start_time += delta
 

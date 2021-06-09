@@ -75,19 +75,25 @@ def view_all_upcoming_appts():
     """Returns all appointments that have not yet passed"""
 
     all_appts = Appointment.query.all()
-    upcoming_appts = []
+    upcoming_appts = [] #Appointment objects
 
     for appt in all_appts:
         if appt.appointment_slot.date >= date.today():
             upcoming_appts.append(appt)
     
-    # def date_key(a):
-    #     """Creates key for sorted function"""
+    # <Appointment appointment_id=1 user_id=1 appointment_slot=2>
+
+    def date_key(a):
+        """Creates key for sorted function"""
+
+        start_time = a.appointment_slot.start_time
+
+        return start_time
 
 
-    return upcoming_appts
+    # return upcoming_appts
 
-    # return sorted(upcoming_appts, key=
+    return sorted(upcoming_appts, key=date_key)
 
 
 def find_user_by_username():
