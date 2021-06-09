@@ -22,9 +22,9 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(user_id)
 
-@login_manager.user_loader
-def load_admin(admin_id):
-    return Admin.query.get(admin_id) # ***
+# @login_manager.user_loader
+# def load_admin(admin_id):
+#     return Admin.query.get(admin_id) # ***
 
 
 @app.route('/')
@@ -67,16 +67,16 @@ def handle_log_in():
     user = User.query.filter_by(username=username).first()
 
 
-    if user is None:
-        admin = Admin.query.filter_by(username=username).first()
-        if admin is None:
-            flash("No user with that username")
-            return redirect("/")
-        else:
-            if admin.password == password:
-                login_user(admin) # ***
-                session['admin'] = True
-                return render_template('admin.html')
+    if user == None:
+        # admin = Admin.query.filter_by(username=username).first()
+        # if admin is None:
+        #     flash("No user with that username")
+        return redirect("/")
+        # else:
+        #     if admin.password == password:
+        #         login_user(admin) # ***
+        #         session['admin'] = True
+        #         return render_template('admin.html')
 
 
     if user.password == password:
@@ -180,11 +180,13 @@ def handle_schedule_appointment():
 @login_required
 def render_appts_page():
     """Renders the appointments page"""
-    print("*" * 20)
-    print(current_user)
-    upcoming_appts = crud.view_all_upcoming_appts()
+    if session['admin'] == True:
+        upcoming_appts = crud.view_all_upcoming_appts()
 
-    return render_template('appointments.html', upcoming_appts=upcoming_appts)
+        return render_template('appointments.html', upcoming_appts=upcoming_appts)
+    else:
+        flash("You do not have access to this page")
+        return redirect('/')
 
 
 
