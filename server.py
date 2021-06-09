@@ -8,6 +8,8 @@ import crud
 from flask_login import (LoginManager, login_user, login_required,
                         logout_user, current_user)
 from datetime import datetime
+from flask_admin import Admin
+
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -15,6 +17,9 @@ app.jinja_env.undefined = StrictUndefined
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+admin = Admin(app)
+
 
 @login_manager.user_loader
 def load_user(user_id):
