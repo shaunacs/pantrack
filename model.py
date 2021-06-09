@@ -8,6 +8,24 @@ from flask_login import UserMixin
 db = SQLAlchemy()
 
 
+class Admin(db.Model):
+    """An administrative user"""
+
+    __tablename__ = "admins"
+
+    admin_id = db.Column(db.Integer,
+                        autoincrement=True,
+                        primary_key=True)
+    fname = db.Column(db.String(15), nullable=False)
+    lname = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(100), unique=True)
+    username = db.Column(db.String(30), nullable=False, unique=True)
+    password = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return f'<Admin admin_id={self.admin_id} fname={self.fname} lname={self.lname}>'
+
+
 class User(db.Model, UserMixin):
     """A food pantry user"""
 
@@ -22,7 +40,6 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(30), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
     phone_number = db.Column(db.String(10), nullable=False)
-    is_admin = db.Column(db.Boolean)
     # household_id = db.Column(db.Integer, db.ForeignKey('households.household_id'))
 
     # household = a list of household objects
@@ -108,6 +125,18 @@ def create_sample_data():
     Household.query.delete()
     User.query.delete()
     Appointment.query.delete()
+    Admin.query.delete()
+
+    #Test Admin
+    admin = Admin(fname='Adminy',
+                    lname='Adminder',
+                    email='admin@test.test',
+                    username='admin',
+                    password='test')
+    
+    db.session.add(admin)
+    db.session.commit()
+
 
     #Test User
     user = User(fname='Test',
