@@ -1,8 +1,17 @@
 """PanTrack CRUD operations"""
 from datetime import datetime, date
-from model import db, User, Appointment, AppointmentSlot, Household, connect_to_db
+from model import db, User, Appointment, AppointmentSlot, Household, Admin, connect_to_db
 from flask import session
 
+
+def create_admin(fname, lname, email, username, password):
+    """Creates an admin user"""
+
+    admin = Admin(fname=fname, lname=lname, email=email,
+                    username=username, password=password)
+    
+    db.session.add(admin)
+    db.session.commit()
 
 def create_user(fname, lname, email, username, password, phone_number):
     """Creates and returns a new user"""
