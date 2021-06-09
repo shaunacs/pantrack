@@ -12,6 +12,15 @@ os.system('createdb appointments')
 model.connect_to_db(server.app)
 model.db.create_all()
 
+
+#create test admin
+admin = crud.create_admin(fname='Adminy',
+                    lname='Adminder',
+                    email='admin@test.test',
+                    username='admin',
+                    password='test')
+
+                    
 # create test users
 for n in range(10):
     fname = f'test{n}'
