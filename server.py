@@ -104,7 +104,7 @@ def handle_log_in():
 @login_required
 def logout():
     logout_user()
-    return render_template('log_in_page.html')
+    return redirect('/')
 
 @app.route('/create-account')
 def render_create_account_form():
