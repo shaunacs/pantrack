@@ -126,6 +126,9 @@ def create_user_account():
     password = request.form.get('password')
     phone_number = request.form.get('phone-number')
 
+    if username in crud.view_all_usernames():
+        flash('Username already taken')
+        return redirect('/create-account')
     new_user = crud.create_user(fname, lname, email, username, password, phone_number)
 
     @login_manager.user_loader
