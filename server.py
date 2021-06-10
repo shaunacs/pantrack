@@ -68,15 +68,18 @@ def handle_log_in():
 
 
     if user == None:
-        # admin = Admin.query.filter_by(username=username).first()
-        # if admin is None:
-        #     flash("No user with that username")
-        return redirect("/")
-        # else:
-        #     if admin.password == password:
-        #         login_user(admin) # ***
-        #         session['admin'] = True
-        #         return render_template('admin.html')
+        admin = Admin.query.filter_by(username=username).first()
+        if admin is None:
+            flash("No user with that username")
+            return redirect("/")
+        else:
+            if admin.password == password:
+                @login_manager.user_loader
+                def load_admin(admin_id):
+                    return Admin.query.get(admin_id)
+                login_user(admin) # ***
+                session['admin'] = True
+                return render_template('admin.html')
 
 
     if user.password == password:
