@@ -7,7 +7,7 @@ from jinja2 import StrictUndefined
 import crud
 from flask_login import (LoginManager, login_user, login_required,
                         logout_user, current_user)
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 app = Flask(__name__)
@@ -78,8 +78,9 @@ def handle_log_in():
                 def load_admin(admin_id):
                     return Admin.query.get(admin_id)
                 login_user(admin) # ***
+                session['username'] = request.form.get('username')
                 session['admin'] = True
-                return render_template('admin.html')
+                return redirect('/admin')
 
 
     if user.password == password:
@@ -179,6 +180,18 @@ def handle_schedule_appointment():
     return redirect('/')
  
 
+@app.route('/admin')
+@login_required
+def render_admin_page():
+    """Renders admin homepage"""
+
+    if session['admin'] == True:
+        return render_template('admin.html')
+    else:
+        flash('You do not have access to this page')
+        return redirect('/')
+
+
 @app.route('/appointments')
 @login_required
 def render_appts_page():
@@ -204,6 +217,32 @@ def renders_create_appt_slot_page():
         flask("You do not have access to this page")
         return redirect('/')
 
+@app.route('/handle-create-appt-slots', methods=["POST"])
+def handle_create_appt_slots():
+    """Creates appointment slots defined by admin"""
+
+    start_time_str = request.form.get('start-time')
+    end_appts_str = request.form.get('end-time')
+
+    # Changing start time and end times to datetime objects
+    date_format = "%Y-%m-%dT%H:%M"
+    start_time = datetime.strptime(start_time_str, date_format)
+    print("*" * 20)
+    print(start_time)
+    print(type(start_time))
+    end_appts = datetime.strptime(end_appts_str, date_format)
+
+    desired_delta = int(request.form.get('time-delta'))
+    delta = timedelta(minutes=desired_delta)
+    
+    while start_time <= end_appts:
+        end_time = start_time + delta
+        date = start_time.date()
+        appt_slot = crud.create_appointment_slot(start_time, end_time, date)
+        start_time += delta
+    
+    flash('Appointments created!')
+    return redirect('/admin')
 
 
 if __name__ == '__main__':
