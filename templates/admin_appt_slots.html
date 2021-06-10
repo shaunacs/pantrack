@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Admin Create Appointment Slots{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+<h1>Create Appointment Slots</h1>
+<form action="/handle-create-appt-slots" method="POST">
+    <label>Start Time</label>
+    <input type="datetime-local" name="start-time"><br>
+    
+    <label>End Time</label>
+    <input type="datetime-local" name="end-time"><br>
+    
+    <label>Minutes Between Each Appointment</label>
+    <input type="number" name="time-delta"><br>
+
+    <input type="submit" name="submit">
+
+</form>
+{% endblock %}

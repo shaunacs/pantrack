@@ -183,6 +183,7 @@ def handle_schedule_appointment():
 @login_required
 def render_appts_page():
     """Renders the appointments page"""
+
     if session['admin'] == True:
         upcoming_appts = crud.view_all_upcoming_appts()
 
@@ -191,6 +192,17 @@ def render_appts_page():
         flash("You do not have access to this page")
         return redirect('/')
 
+
+@app.route('/create-appointment-slots')
+@login_required
+def renders_create_appt_slot_page():
+    """Renders page to allow admins to create available appointment slots"""
+
+    if session['admin'] == True:
+        return render_template('admin_appt_slots.html')
+    else:
+        flask("You do not have access to this page")
+        return redirect('/')
 
 
 
