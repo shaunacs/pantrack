@@ -35,9 +35,9 @@ for n in range(10):
 # create test appointment slots
 # date = date(2021, 6, 15)
 # end_date = date(2021, 6, 14)
-delta = timedelta(minutes=15)
+delta = timedelta(minutes=10)
 start_time = datetime(2021, 6, 15, 9, 0)
-end_appts = datetime(2021, 6, 16, 12, 0)
+end_appts = datetime(2021, 6, 15, 12, 0)
 
 while start_time <= end_appts:
     end_time = start_time + delta

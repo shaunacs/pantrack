@@ -105,6 +105,19 @@ def view_all_upcoming_appts():
     return sorted(upcoming_appts, key=date_key)
 
 
+def view_all_usernames():
+    """Returns a list of all usernames"""
+
+    all_users = view_all_users()
+
+    all_usernames = []
+
+    for user in all_users:
+        username = user.username
+        all_usernames.append(username)
+    
+    return all_usernames
+
 def find_user_by_username():
     """Finds a user associated with username in session"""
 
