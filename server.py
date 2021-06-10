@@ -85,9 +85,11 @@ def handle_log_in():
 
     if user.password == password:
         # Call flask_login.login_user to login a user
+        @login_manager.user_loader
+        def load_user(user_id):
+            return User.query.get(user_id)
         login_user(user)
 
-        flash("Logged in successfully!")
 
         #Add user to session
         session['username'] = request.form.get('username')
@@ -96,7 +98,7 @@ def handle_log_in():
 
         return redirect('/')
     
-    flash("Sorry try again.")
+    flash("Incorrect username and/or password.")
     return redirect("/")
 
 
@@ -126,6 +128,9 @@ def create_user_account():
 
     new_user = crud.create_user(fname, lname, email, username, password, phone_number)
 
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(user_id)
     login_user(new_user)
     session['username'] = request.form.get('username')
     session['password'] = request.form.get('password')
@@ -241,7 +246,6 @@ def handle_create_appt_slots():
         appt_slot = crud.create_appointment_slot(start_time, end_time, date)
         start_time += delta
     
-    flash('Appointments created!')
     return redirect('/admin')
 
 

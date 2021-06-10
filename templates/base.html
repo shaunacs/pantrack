@@ -6,8 +6,18 @@
         </title>
 
         {% block head %}{% endblock %}
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
     </head>
     <body>
+        <ul>
+            {% for message in get_flashed_messages() %}
+              <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
         {% block body %}{% endblock %}
+        <script src="/static/js/pantrack.js"></script>
     </body>
 </html>
