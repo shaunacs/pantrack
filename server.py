@@ -186,7 +186,18 @@ def handle_schedule_appointment():
     appt = crud.create_appointment(user, selected_appt_slot, household)
 
     return redirect('/')
- 
+
+
+@app.route('/handle-cancel-appt')
+def handle_cancel_appt():
+    """Cancels a user's upcoming appointment"""
+
+    user = crud.find_user_by_username()
+    crud.cancel_last_appt(user)
+
+    return redirect('/')
+
+
 
 @app.route('/admin')
 @login_required

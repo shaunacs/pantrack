@@ -1,16 +1,11 @@
 "use strict";
 
 $('#cancel-appt').on('click', () => {
-    if (confirm('Are you sure you want to cancel this appointment?')) {
-        const cancel = True;
-    } else {
-        const cancel = False;
-    }
+    const cancel = confirm('Are you sure you want to cancel this appointment?');
 
-    if (cancel === True) {
-        $.post('/handle-cancel-appt')
-    } else {
-        $.get('/')
+    if (cancel) {
+        alert("Your appointment has been cancelled")
+        location.href = "/handle-cancel-appt"
     }
 })
 
