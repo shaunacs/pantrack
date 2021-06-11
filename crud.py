@@ -80,6 +80,18 @@ def view_all_appt_slots():
     return AppointmentSlot.query.all()
 
 
+def view_all_avail_appt_slots():
+    """Returns a list of all available appointment slots"""
+
+    all_appt_slots = view_all_appt_slots()
+    avail_appt_slots = []
+
+    for slot in all_appt_slots:
+        if slot.appointment == []:
+            avail_appt_slots.append(slot)
+
+    return avail_appt_slots
+
 def view_all_upcoming_appts():
     """Returns all appointments that have not yet passed"""
 
