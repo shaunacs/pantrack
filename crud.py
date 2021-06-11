@@ -119,6 +119,16 @@ def cancel_last_appt(user):
     return f'Successfully deleted {appt_to_delete}!'
 
 
+def delete_ApptSlot(start_time):
+    """Deletes an AppointmentSlot based on start time datetime"""
+
+    appt_slot_to_delete = AppointmentSlot.query.filter(AppointmentSlot.start_time == start_time).first()
+
+    db.session.delete(appt_slot_to_delete)
+    db.session.commit()
+
+    return f'You just deleted {appt_slot_to_delete}!'
+
 def view_all_usernames():
     """Returns a list of all usernames"""
 
