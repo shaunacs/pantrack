@@ -189,6 +189,7 @@ def handle_schedule_appointment():
 
 
 @app.route('/handle-cancel-appt')
+@login_required
 def handle_cancel_appt():
     """Cancels a user's upcoming appointment"""
 
@@ -233,8 +234,9 @@ def renders_create_appt_slot_page():
     if session['admin'] == True:
         return render_template('admin_appt_slots.html')
     else:
-        flask("You do not have access to this page")
+        flash("You do not have access to this page")
         return redirect('/')
+
 
 @app.route('/handle-create-appt-slots', methods=["POST"])
 def handle_create_appt_slots():
@@ -262,6 +264,17 @@ def handle_create_appt_slots():
     
     return redirect('/admin')
 
+
+@app.route('/delete-appointment-slots')
+@login_required
+def render_delete_appt_slot_page():
+    """Allows admins to delete selected available appointment slots"""
+
+    if session['admin'] == True:
+        return render_template('admin_delete_appt_slots.html')
+    else:
+        flash('You do not have access to this page.')
+        return redirect('/')
 
 if __name__ == '__main__':
     connect_to_db(app)
