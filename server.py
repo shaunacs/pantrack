@@ -239,6 +239,7 @@ def renders_create_appt_slot_page():
 
 
 @app.route('/handle-create-appt-slots', methods=["POST"])
+@login_required
 def handle_create_appt_slots():
     """Creates appointment slots defined by admin"""
 
@@ -271,10 +272,37 @@ def render_delete_appt_slot_page():
     """Allows admins to delete selected available appointment slots"""
 
     if session['admin'] == True:
-        return render_template('admin_delete_appt_slots.html')
+        avail_appts = crud.view_all_avail_appt_slots()
+  
+        print("*" * 20)
+        print(avail_appts)
+        return render_template('admin_delete_appt_slots.html',
+                                avail_appts=avail_appts)
     else:
         flash('You do not have access to this page.')
         return redirect('/')
+
+
+@app.route('/handle-delete-appt-slots', methods=["POST"])
+@login_required
+def handle_delete_appt_slots():
+    """Deletes appointment slots selected by admin"""
+
+    slots = request.form.getlist('avail-slot')
+    
+    slots_to_delete = []
+
+    for slot_to_delete in slots:
+        slot = crud.string_to_ApptSlot(slot_to_delete)
+        slots_to_delete.append(slot)
+    
+    for slot in slots_to_delete:
+        print("*" * 20)
+        print(slot.start_time)
+        start_time = slot.start_time
+        crud.delete_ApptSlot(slot.start_time)
+
+    return redirect('/')
 
 if __name__ == '__main__':
     connect_to_db(app)
