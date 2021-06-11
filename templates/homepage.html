@@ -6,8 +6,13 @@
 {% block body %}
 <h1>Welcome to PanTrack, {{ current_user.fname }}</h1>
 <h2>Schedule your food pantry appointment here!</h2>
-<div id="next-appt">Your next appointment is: <br>
-  {{ user_next_appt }}</div>
+{% if has_appt == True %}
+  <div id="next-appt">Your next appointment is: <br>
+    {{ user_next_appt }}</div><br>
+  
+  <button id="cancel-appt">Click here to cancel your appointment</button>
+  <!-- <div id="cancel-appt"><a href="/cancel-appt">Click here to cancel your appointment</a></div> -->
+{% endif %}
 
 {% if has_appt == False %}
 <p>Schedule an appointment <a href="/household-info">here</a></p>

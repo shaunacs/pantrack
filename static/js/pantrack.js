@@ -1,5 +1,20 @@
 "use strict";
 
+$('#cancel-appt').on('click', () => {
+    if (confirm('Are you sure you want to cancel this appointment?')) {
+        const cancel = True;
+    } else {
+        const cancel = False;
+    }
+
+    if (cancel === True) {
+        $.post('/handle-cancel-appt')
+    } else {
+        $.get('/')
+    }
+})
+
+
 // $('#create-account').on('click', (evt) => {
 
 //     const accountInfo = {

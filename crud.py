@@ -105,6 +105,20 @@ def view_all_upcoming_appts():
     return sorted(upcoming_appts, key=date_key)
 
 
+def cancel_last_appt(user):
+    """Deletes a user's last appointment object"""
+
+    user_upcoming_appt = user.appointments[-1]
+    user_upcoming_appt_id = user_upcoming_appt.appointment_id
+
+    appt_to_delete = Appointment.query.get(user_upcoming_appt_id)
+
+    db.session.delete(appt_to_delete)
+    db.session.commit()
+
+    return f'Successfully deleted {appt_to_delete}!'
+
+
 def view_all_usernames():
     """Returns a list of all usernames"""
 
