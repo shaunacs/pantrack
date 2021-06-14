@@ -137,6 +137,7 @@ def create_user_account():
     login_user(new_user)
     session['username'] = request.form.get('username')
     session['password'] = request.form.get('password')
+    session['admin'] = False
 
     return redirect('/')
 
