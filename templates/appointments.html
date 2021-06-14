@@ -8,11 +8,33 @@
     <tr>
         <th>Time</th>
         <th>Name</th>
+        <th>People in Household</th>
+        <th>Wants Peanut Butter</th>
+        <th>Picking Up for Someone Else</th>
+        <th>Allergies</th>
+        <th>Special Requests</th>
     </tr>
     {% for appt in upcoming_appts %}
         <tr>
             <td>{{ appt.appointment_slot.start_time }}</td>
             <td>{{ appt.user.fname }} {{ appt.user.lname }}</td>
+            <td>{{ appt.household.num_people }}</td>
+            {% if appt.household.wants_peanut_butter == True %}
+                <td><span>&#10003;</span></td>
+            {% else %}
+                <td></td>
+            {% endif %}
+            <td>{{ appt.household.picking_up_for_another }}</td>
+            {% if appt.household.allergies == None %}
+                <td></td>
+            {% else %}
+                <td>{{ appt.household.allergies }}</td>
+            {% endif %}
+            {% if appt.household.special_requests == None %}
+                <td></td>
+            {% else %}
+                <td>{{ appt.household.special_requests }}</td>
+            {% endif %}
         </tr>
     {% endfor %}
     <!-- <tr>
