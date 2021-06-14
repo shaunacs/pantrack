@@ -148,7 +148,7 @@ def create_sample_data():
                 lname='Tester',
                 email='test@test.test',
                 username='testy',
-                password='testttt',
+                password='test',
                 phone_number='5555555555')
     
     db.session.add(user)
