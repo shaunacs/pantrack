@@ -275,8 +275,6 @@ def render_delete_appt_slot_page():
     if session['admin'] == True:
         avail_appts = crud.view_all_avail_appt_slots()
   
-        print("*" * 20)
-        print(avail_appts)
         return render_template('admin_delete_appt_slots.html',
                                 avail_appts=avail_appts)
     else:

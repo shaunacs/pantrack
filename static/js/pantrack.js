@@ -1,5 +1,6 @@
 "use strict";
 
+// Pop up that confirms the user wants to cancel their appointment
 $('#cancel-appt').on('click', () => {
     const cancel = confirm('Are you sure you want to cancel this appointment?');
 
@@ -9,18 +10,8 @@ $('#cancel-appt').on('click', () => {
     }
 })
 
+// Alert that tells admin their selected appointments have been deleted
+$('#delete-appt-slot').on('click', () => {
 
-// $('#create-account').on('click', (evt) => {
-
-//     const accountInfo = {
-//         'fname': $('input[name="fname"]'),
-//         'lname': $('input[name="lname"]'),
-//         'email': $('input[name="email"]'),
-//         'username': $('input[name="usernmae"]'),
-//         'password': $('input[name="password"]'),
-//         'phone_number': $('input[name="phone-number"]')
-//     }
-//     $.post('/handle-create-account', accountInfo, (res) => {
-//         alert(res)
-//     })
-// })
+    alert('The appointment slot(s) selected have been deleted');
+})
