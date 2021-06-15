@@ -335,6 +335,25 @@ def render_new_admin_form():
         flash('You do not have access to this page.')
         return redirect('/')
 
+
+@app.route('/handle-new-admin', methods=["POST"])
+@login_required
+def handle_new_admin():
+    """Creates new Admin from form input"""
+
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    email = request.form.get('email')
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    crud.create_admin(fname, lname, email, username, password)
+
+    return redirect('/')
+
+
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(debug=True, use_reloader=True, use_debugger=True)
