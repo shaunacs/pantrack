@@ -4,8 +4,9 @@
 {% block head %}{% endblock %}
 
 {% block body %}
+<h1>Household Info</h1>
 <form action="/handle-household-info" method="POST">
-    <input type="number" name="num-people">
+    <input type="number" name="num-people" required>
     <label>Number of people in household</label><br>
 
     Would you like peanut butter?
@@ -20,6 +21,12 @@
     <!-- <div id="name-picking-up"></div> -->
     <input type="radio" class="picking-up" name="picking-up-for-another" value=False>
     <label>No</label><br>
+
+    <input type="text" name="allergies">
+    <label>Allergies</label><br>
+
+    <input type="text" name="special-requests">
+    <label>Any special requests?</label><br>
 
     <input type="submit" name="submit">
 

@@ -36,8 +36,11 @@ for n in range(10):
 # date = date(2021, 6, 15)
 # end_date = date(2021, 6, 14)
 delta = timedelta(minutes=10)
-start_time = datetime(2021, 6, 15, 9, 0)
-end_appts = datetime(2021, 6, 15, 12, 0)
+now = datetime.now()
+start_time = datetime(now.year, now.month, now.day, now.hour, now.minute) + timedelta(days=7)
+end_appts = start_time + timedelta(hours=3)
+# start_time = datetime(2021, 6, 15, 9, 0)
+# end_appts = datetime(2021, 6, 15, 12, 0)
 
 while start_time <= end_appts:
     end_time = start_time + delta

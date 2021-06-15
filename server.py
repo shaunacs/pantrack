@@ -155,11 +155,32 @@ def handle_household_info():
 
     user = crud.find_user_by_username()
     num_people = request.form.get('num-people')
-    wants_peanut_butter = bool(request.form.get('wants-peanut-butter'))
-    picking_up_for_another = bool(request.form.get('picking-up-for-another'))
+    wants_peanut_butter = request.form.get('wants-peanut-butter')
+    picking_up_for_another = request.form.get('picking-up-for-another')
+    allergies = request.form.get('allergies')
+    special_requests = request.form.get('special-requests')
+    
+    # Changing strings to appropriate data type to create instance
+    if allergies == "":
+        allergies = None
+    if special_requests == "":
+        special_requests = None
+    
+    print("*" * 25)
+    print(special_requests)
+    
+    if wants_peanut_butter == "True":
+        wants_peanut_butter = True
+    else:
+        wants_peanut_butter = False
+    
+    if picking_up_for_another == "True":
+        picking_up_for_another = True
+    else:
+        picking_up_for_another = False
     
     user_household = crud.create_household(user, num_people, wants_peanut_butter,
-                        picking_up_for_another)
+                        picking_up_for_another, allergies, special_requests)
     
     available_appts = []
     all_appt_slots = crud.view_all_appt_slots()
