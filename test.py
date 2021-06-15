@@ -6,7 +6,7 @@
 
 from unittest import TestCase
 from server import app, session
-from model import db, connect_to_db, create_sample_data, User
+from model import db, connect_to_db, create_sample_data, User, Admin
 import crud
 import os
 
@@ -100,6 +100,13 @@ class FlaskTestsLoggedInAdmin(TestCase):
                 sess['password'] = 'test'
                 sess['admin'] = True
     
+    def tearDown(self):
+        """Stuff to do after each test"""
+
+        admin = Admin.query.filter_by(username='admin').first()
+        db.session.delete(admin)
+        db.session.commit()
+    
 
     def test_logged_in_homepage(self):
         """Tests admin logged in homepage route"""
@@ -109,6 +116,15 @@ class FlaskTestsLoggedInAdmin(TestCase):
                                 follow_redirects=True)
         
         self.assertIn(b'Admin Page', res.data)
+    
+
+    def test_logout(self):
+        """Tests admin log out"""
+
+        res = self.client.get('/logout',
+                                data={'username': 'admin', 'password': 'test'},
+                                follow_redirects=True)
+        self.assertIn(b'log in', res.data)
 
 
 
