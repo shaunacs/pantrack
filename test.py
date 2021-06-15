@@ -2,6 +2,7 @@
 /
 /log-in
 /logout
+/create-account
 """
 
 from unittest import TestCase
@@ -17,9 +18,6 @@ class FlaskTests(TestCase):
 
         self.client = app.test_client()
         app.config['TESTING'] = True
-
-        connect_to_db(app, "postgresql:///testdb")
-        db.create_all()
     
     def tearDown(self):
         """Stuff to do after each test."""
@@ -41,6 +39,21 @@ class FlaskTests(TestCase):
         self.assertIn(b'Create an account', res.data)
 
 
+    def test_handle_create_account(self):
+        """Tests that submitting create account form creates a user"""
+
+        create_account_data = {'fname': 'Create',
+                                'lname': 'Account',
+                                'email': 'create@test.test',
+                                'username': 'create',
+                                'password': 'test',
+                                'phone-number': '44444'}
+        
+        res = self.client.post('/handle-create-account',
+                                data=create_account_data,
+                                follow_redirects=True)
+        self.assertEqual(User.query.all()[-1], User.query.filter_by(username='create').first())
+
 class FlaskTestsLoggedInUser(TestCase):
     """Flask tests with user logged in to session."""
 
@@ -53,9 +66,6 @@ class FlaskTestsLoggedInUser(TestCase):
 
         with self.client as c:
             with c.session_transaction() as sess:
-                
-                # connect_to_db(app, "postgresql:///testdb")
-                # db.create_all()
 
                 crud.create_user('Testy', 'Tester', 'test@test.test', 'testuser', 'test', '5555')
                 sess['username'] = 'testuser'
