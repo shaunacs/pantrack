@@ -31,6 +31,14 @@ class FlaskTests(TestCase):
         res = self.client.get('/')
         self.assertEqual(res.status_code, 200)
         self.assertIn(b"Welcome", res.data)
+    
+
+    def test_create_account(self):
+        """Test create account route renders create account page"""
+
+        res = self.client.get('/create-account')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn(b'Create an account', res.data)
 
 
 class FlaskTestsLoggedInUser(TestCase):
