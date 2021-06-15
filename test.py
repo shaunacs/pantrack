@@ -1,6 +1,7 @@
 """Routes tested:
 /
 /log-in
+/logout
 """
 
 from unittest import TestCase
@@ -16,6 +17,9 @@ class FlaskTests(TestCase):
 
         self.client = app.test_client()
         app.config['TESTING'] = True
+
+        connect_to_db(app, "postgresql:///testdb")
+        db.create_all()
     
     def tearDown(self):
         """Stuff to do after each test."""
@@ -41,18 +45,19 @@ class FlaskTestsLoggedInUser(TestCase):
 
         with self.client as c:
             with c.session_transaction() as sess:
-                os.system('dropdb appointments')
-                os.system('createdb appointments')
-                db.create_all()
-                user = crud.create_user('Testing', 'Test', 'testing@test.test', 'testy', 'test', '83838')
-                sess['username'] = 'testy'
+                
+                # connect_to_db(app, "postgresql:///testdb")
+                # db.create_all()
+
+                crud.create_user('Testy', 'Tester', 'test@test.test', 'testuser', 'test', '5555')
+                sess['username'] = 'testuser'
                 sess['password'] = 'test'
                 sess['admin'] = False
     
     def tearDown(self):
         """Stuff to do after each test"""
 
-        user = User.query.filter_by(username='test').first()
+        user = User.query.filter_by(username='testuser').first()
         db.session.delete(user)
         db.session.commit()
     
@@ -60,16 +65,18 @@ class FlaskTestsLoggedInUser(TestCase):
         """Tests user logged in homepage route"""
 
         res = self.client.post('/log-in',
-                                data={"username": "testy", "password": "test"},
+                                data={"username": "testuser", "password": "test"},
                                 follow_redirects=True)
         self.assertIn(b'Schedule', res.data)
 
 
-    # def test_logout(self):
-    #     """Tests user log out"""
+    def test_logout(self):
+        """Tests user log out"""
 
-    #     res = self.client.get('/logout')
-    #     self.assertIn(b'log in', res.data)
+        res = self.client.get('/logout',
+                                data={"username": "testuser", "password": "test"},
+                                follow_redirects=True)
+        self.assertIn(b'log in', res.data)
 
 class FlaskTestsLoggedInAdmin(TestCase):
     """Flask tests with Admin logged in to session"""
@@ -83,9 +90,11 @@ class FlaskTestsLoggedInAdmin(TestCase):
 
         with self.client as c:
             with c.session_transaction() as sess:
-                os.system('dropdb appointments')
-                os.system('createdb appointments')
-                db.create_all()
+                # os.system('dropdb testdb')
+                # os.system('createdb testdb')
+                # connect_to_db(app, "postgresql:///testdb")
+
+                # db.create_all()
                 crud.create_admin('Admin', 'Admindy', 'admin@test.test', 'admin', 'test')
                 sess['username'] = 'admin'
                 sess['password'] = 'test'
@@ -105,5 +114,8 @@ class FlaskTestsLoggedInAdmin(TestCase):
 
 if __name__ == '__main__':
     import unittest
-    connect_to_db(app)
+    os.system('dropdb testdb')
+    os.system('createdb testdb')
+    connect_to_db(app, "postgresql:///testdb")
+    db.create_all()
     unittest.main()

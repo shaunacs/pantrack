@@ -103,7 +103,6 @@ def handle_log_in():
 
 
 @app.route('/logout')
-@login_required
 def logout():
     logout_user()
     return redirect('/')

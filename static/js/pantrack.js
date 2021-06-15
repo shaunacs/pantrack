@@ -15,3 +15,11 @@ $('#delete-appt-slot').on('click', () => {
 
     alert('The appointment slot(s) selected have been deleted');
 })
+
+
+// Collects name of person picking up for when yes is selected on household form
+$(document).ready(function(){
+    $('.picking-up').change(function(){
+        alert('Radio button has changed');
+    })
+})
