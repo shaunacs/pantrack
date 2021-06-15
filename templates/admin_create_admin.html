@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Admin Create New Admin{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+<h1>Create New Admin</h1>
+<form action="handle-new-admin">
+    <label>First Name</label>
+    <input type="text" name="fname"><br>
+
+    <label>Last Name</label>
+    <input type="text" name="lname"><br>
+
+    <label>Email</label>
+    <input type="email" name="email"><br>
+
+    <label>Username</label>
+    <input type="text" name="username"><br>
+
+    <label>Password</label>
+    <input type="password" name="password"><br>
+
+    <input type="submit" name="submit">
+</form>
+{% endblock %}

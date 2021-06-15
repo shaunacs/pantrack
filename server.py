@@ -329,8 +329,8 @@ def handle_delete_appt_slots():
 def render_new_admin_form():
     """Renders form to create new Admin"""
 
-    if session['admin'] = True:
-        return render_template('admin_create_new_admin.html')
+    if session['admin'] == True:
+        return render_template('admin_create_admin.html')
     else:
         flash('You do not have access to this page.')
         return redirect('/')
