@@ -323,6 +323,18 @@ def handle_delete_appt_slots():
 
     return redirect('/')
 
+
+@app.route('/create-new-admin')
+@login_required
+def render_new_admin_form():
+    """Renders form to create new Admin"""
+
+    if session['admin'] = True:
+        return render_template('admin_create_new_admin.html')
+    else:
+        flash('You do not have access to this page.')
+        return redirect('/')
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(debug=True, use_reloader=True, use_debugger=True)
