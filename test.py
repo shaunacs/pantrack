@@ -3,11 +3,13 @@
 /log-in
 /logout
 /create-account
+/household-info
 """
 
 from unittest import TestCase
 from server import app, session
-from model import db, connect_to_db, create_sample_data, User, Admin
+from model import (db, connect_to_db, create_sample_data, User,
+                    Admin, Household)
 import crud
 import os
 
@@ -29,6 +31,14 @@ class FlaskTests(TestCase):
         res = self.client.get('/')
         self.assertEqual(res.status_code, 200)
         self.assertIn(b"Welcome", res.data)
+    
+
+    def test_household_rendering(self):
+        """Test rendering of household form"""
+
+        res = self.client.get('/household-info')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn(b"Household Info", res.data)
     
 
     def test_create_account(self):
@@ -67,7 +77,7 @@ class FlaskTestsLoggedInUser(TestCase):
         with self.client as c:
             with c.session_transaction() as sess:
 
-                crud.create_user('Testy', 'Tester', 'test@test.test', 'testuser', 'test', '5555')
+                user = crud.create_user('Testy', 'Tester', 'test@test.test', 'testuser', 'test', '5555')
                 sess['username'] = 'testuser'
                 sess['password'] = 'test'
                 sess['admin'] = False
@@ -95,6 +105,26 @@ class FlaskTestsLoggedInUser(TestCase):
                                 data={"username": "testuser", "password": "test"},
                                 follow_redirects=True)
         self.assertIn(b'log in', res.data)
+
+
+    def test_handle_household(self):
+        """Test creation of user household"""
+
+        user = User.query.first()
+
+        create_household_data = {'num-people': 3,
+                                'wants-peanut-butter': 'False',
+                                'picking-up-for-another': 'False',
+                                'allergies': 'peanuts',
+                                'special-requests': ''}
+        
+        res = self.client.post('/handle-household-info',
+                                data=create_household_data,
+                                follow_redirects=True)
+        self.assertIn(b'Schedule Appointment', res.data)
+        # self.assertEqual(Household.query.all()[-1], User.query)
+
+
 
 class FlaskTestsLoggedInAdmin(TestCase):
     """Flask tests with Admin logged in to session"""

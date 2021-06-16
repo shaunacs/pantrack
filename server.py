@@ -166,9 +166,6 @@ def handle_household_info():
     if special_requests == "":
         special_requests = None
     
-    print("*" * 25)
-    print(special_requests)
-    
     if wants_peanut_butter == "True":
         wants_peanut_butter = True
     else:
