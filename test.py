@@ -122,7 +122,6 @@ class FlaskTestsLoggedInUser(TestCase):
                                 data=create_household_data,
                                 follow_redirects=True)
         self.assertIn(b'Schedule Appointment', res.data)
-        # self.assertEqual(Household.query.all()[-1], User.query)
 
 
 
