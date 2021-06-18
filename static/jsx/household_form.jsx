@@ -1,9 +1,18 @@
 'use strict';
 
+// function getName() {
+//     prompt()
+// }
+
 function PickingUpForAnother() {
-    function alertMessage() {
-        alert('You clicked yes');
+    function promptMessage() {
+        prompt('Who are you picking up for?');
     }
+
+    // function namePickup() {
+    //     const [name, getName] = React.useState("");
+
+    // }
 
 
     return (
@@ -15,7 +24,7 @@ function PickingUpForAnother() {
             <label>Yes</label>
             <input type="radio" name="wants-peanut-butter" value="False"></input><br></br>
             <label>Are you picking up for anyone else?</label>
-            <input onClick={alertMessage} type="radio" name="picking-up-for-another" value="True"></input>
+            <input onClick={promptMessage} type="radio" name="picking-up-for-another" value="True"></input>
             <label>Yes</label>
             <input type="radio" name="picking-up-for-another" value="False"></input>
             <label>No</label><br></br>
