@@ -1,18 +1,16 @@
 'use strict';
 
-// function getName() {
-//     prompt()
+// function AnotherPickup(props) {
+
 // }
 
-function PickingUpForAnother() {
+
+function PickingUpForAnother(props) {
     function promptMessage() {
-        prompt('Who are you picking up for?');
+        const pickupName = prompt('Who are you picking up for?');
+        console.log(props.anotherPickup)
+        return pickupName
     }
-
-    // function namePickup() {
-    //     const [name, getName] = React.useState("");
-
-    // }
 
 
     return (
@@ -22,7 +20,8 @@ function PickingUpForAnother() {
             <label>Would you like peanut butter?</label>
             <input type="radio" name="wants-peanut-butter"  value="True"></input>
             <label>Yes</label>
-            <input type="radio" name="wants-peanut-butter" value="False"></input><br></br>
+            <input type="radio" name="wants-peanut-butter" value="False"></input>
+            <label>No</label><br></br>
             <label>Are you picking up for anyone else?</label>
             <input onClick={promptMessage} type="radio" name="picking-up-for-another" value="True"></input>
             <label>Yes</label>
@@ -38,7 +37,7 @@ function PickingUpForAnother() {
 }
 
 ReactDOM.render(
-    <PickingUpForAnother />,
+    <PickingUpForAnother anotherPickup="False"/>,
     document.querySelector('#household-info')
 )
 

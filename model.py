@@ -111,7 +111,7 @@ class Household(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     num_people = db.Column(db.Integer, nullable=False)
     wants_peanut_butter = db.Column(db.Boolean, nullable=False)
-    picking_up_for_another = db.Column(db.Boolean, nullable=False)
+    picking_up_for_another = db.Column(db.Boolean)
     allergies = db.Column(db.String(30))
     special_requests = db.Column(db.Text)
 
