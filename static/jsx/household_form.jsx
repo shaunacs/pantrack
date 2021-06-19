@@ -1,28 +1,50 @@
 'use strict';
 
-// function AnotherPickup(props) {
+function PickingUpForAnother(props) {
+    return (
+        <div>
+            <label>Are you picking up for anyone else?</label>
+            <input onClick={props.onClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
+            <label>Yes</label>
+            <input onClick={props.onClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
+            <label>No</label><br></br>
+            <label>Who are you picking up for?</label>
+            <input type="text" name="pickup-for" id="pickup-for"></input><br></br>
+        </div>
+    )
+}
 
-// }
+function NotPickingUpForAnother(props) {
+    return (
+        <div>
+            <label>Are you picking up for anyone else?</label>
+            <input onClick={props.onTrueClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
+            <label>Yes</label>
+            <input onClick={props.onFalseClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
+            <label>No</label><br></br>
+        </div>
+    )
+}
 
+function DisplayHouseholdForm() {
 
-function PickingUpForAnother() {
-    function promptMessage() {
-        const pickupName = prompt('Who are you picking up for?');
-        return pickupName
-    }
-
-    const [anotherPickup, handleAnotherPickup] = React.useState('False');
-    const [isHidden, handleHiddenInput] = React.useState("True");
+    const [anotherPickup, handleAnotherPickup] = React.useState(false);
 
     function truePickup() {
-        handleAnotherPickup('True');
-        handleHiddenInput('False');
+        handleAnotherPickup(true);
     }
 
     function falsePickup() {
-        handleAnotherPickup('False');
+        handleAnotherPickup(false);
     }
 
+    
+    let pickupInput;
+    if (anotherPickup) {
+        pickupInput = <PickingUpForAnother onFalseClick={falsePickup} onClick={truePickup} pickup={anotherPickup} />;
+    } else {
+        pickupInput = <NotPickingUpForAnother onFalseClick={falsePickup} onTrueClick={truePickup} pickup={anotherPickup} />;
+    }
 
     return (
         <div>
@@ -33,23 +55,18 @@ function PickingUpForAnother() {
             <label>Yes</label>
             <input type="radio" name="wants-peanut-butter" value="False"></input>
             <label>No</label><br></br>
-            <label>Are you picking up for anyone else?</label>
-            <input onClick={truePickup} type="radio" name="picking-up-for-another" value={anotherPickup}></input>
-            <label>Yes</label>
-            <input onClick={falsePickup} type="radio" name="picking-up-for-another" value={anotherPickup}></input>
-            <label>No</label><br></br>
-            <input type="text" name="pickup-for" hidden={isHidden}></input>
+            {pickupInput}
             <input type="text" name="allergies"></input>
             <label>Allergies</label><br></br>
             <input type="text" name="special-requests"></input>
             <label>Any special requests?</label><br></br>
             <input type="submit" name="submit"></input>
         </div>
-    );
+    )
 }
 
+
 ReactDOM.render(
-    <PickingUpForAnother />,
+    <DisplayHouseholdForm />,
     document.querySelector('#household-info')
 )
-
