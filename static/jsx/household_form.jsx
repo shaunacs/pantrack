@@ -4,9 +4,9 @@ function PickingUpForAnother(props) {
     return (
         <div>
             <label>Are you picking up for anyone else?</label>
-            <input onClick={props.onClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
+            <input onClick={props.onTrueClick} type="radio" name="picking-up-for-another" value={props.pickup} defaultChecked></input>
             <label>Yes</label>
-            <input onClick={props.onClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
+            <input onClick={props.onFalseClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
             <label>No</label><br></br>
             <label>Who are you picking up for?</label>
             <input type="text" name="pickup-for" id="pickup-for"></input><br></br>
@@ -20,7 +20,7 @@ function NotPickingUpForAnother(props) {
             <label>Are you picking up for anyone else?</label>
             <input onClick={props.onTrueClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
             <label>Yes</label>
-            <input onClick={props.onFalseClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
+            <input onClick={props.onFalseClick} type="radio" name="picking-up-for-another" value={props.pickup} defaultChecked></input>
             <label>No</label><br></br>
         </div>
     )

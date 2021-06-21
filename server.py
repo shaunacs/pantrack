@@ -171,7 +171,7 @@ def handle_household_info():
     else:
         wants_peanut_butter = False
     
-    if picking_up_for_another == "True":
+    if picking_up_for_another == "true":
         picking_up_for_another = True
     else:
         picking_up_for_another = False
