@@ -59,6 +59,8 @@ for user in all_users:
 
     if picking_up_for_another == True:
         another_pickup_name = 'Test Pickup'
+    else:
+        another_pickup_name = ""
 
     user_household = crud.create_household(user, num_people, wants_peanut_butter,
                                         picking_up_for_another, another_pickup_name)
