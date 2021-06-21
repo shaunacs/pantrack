@@ -1,7 +1,7 @@
 """Server for PanTrack app"""
 
 from flask import (Flask, render_template, request, flash, session,
-                    redirect)
+                    redirect, jsonify)
 from model import connect_to_db, User, AppointmentSlot, Household, Admin
 from jinja2 import StrictUndefined
 import crud
@@ -243,6 +243,7 @@ def render_appts_page():
     else:
         flash("You do not have access to this page")
         return redirect('/')
+
 
 
 @app.route('/create-appointment-slots')
