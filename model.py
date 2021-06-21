@@ -42,8 +42,8 @@ class User(db.Model, UserMixin):
     fname = db.Column(db.String(15), nullable=False)
     lname = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(100), unique=True)
-    username = db.Column(db.String(30), nullable=False, unique=True)
-    password = db.Column(db.String(20), nullable=False)
+    username = db.Column(db.String(30), unique=True)
+    password = db.Column(db.String(20))
     phone_number = db.Column(db.String(10), nullable=False)
     # household_id = db.Column(db.Integer, db.ForeignKey('households.household_id'))
 

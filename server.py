@@ -55,6 +55,16 @@ def render_hompeage():
         return render_template('log_in_page.html')
 
 
+@app.route('/get-next-appt')
+def find_next_user_appt():
+    """Finds next appointment for user for user profile"""
+
+    user = crud.find_user_by_username()
+
+    user_next_appt = user.appointments[-1].appointment_slot.start_time
+
+    return str(user_next_appt)
+
 
 @app.route('/log-in', methods=["POST"])
 def handle_log_in():
@@ -349,6 +359,18 @@ def handle_new_admin():
     crud.create_admin(fname, lname, email, username, password)
 
     return redirect('/')
+
+
+@app.route('/create-user-appt')
+@login_required
+def admin_create_appt():
+    """Allows admins to manually create a user appointment"""
+
+    if session['admin'] == True:
+        return render_template('admin_user_appt_create.html')
+    else:
+        flash('You do not have access to this page.')
+        return redirect('/')
 
 
 

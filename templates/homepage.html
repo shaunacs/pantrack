@@ -4,16 +4,13 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-<!-- <div id="welcome"></div> -->
 <h1>Welcome to PanTrack, {{ current_user.fname }}</h1>
 <h2>Schedule your food pantry appointment here!</h2>
 {% if has_appt == True %}
   <div id="next-appt">Your next appointment is: <br>
     {{ user_next_appt }}</div><br>
   
-  <!-- <div id="cancel-appt"></div> -->
   <button id="cancel-appt" action="/handle-cancel-appt">Click here to cancel your appointment</button>
-  <!-- <div id="cancel-appt"><a href="/cancel-appt">Click here to cancel your appointment</a></div> -->
 {% endif %}
 
 {% if has_appt == False %}
@@ -25,6 +22,5 @@
     <button id="log-out-button">Log Out</button>
   </form>
 {% endif %}
-
 
 {% endblock %}
