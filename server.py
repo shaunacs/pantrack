@@ -157,6 +157,7 @@ def handle_household_info():
     num_people = request.form.get('num-people')
     wants_peanut_butter = request.form.get('wants-peanut-butter')
     picking_up_for_another = request.form.get('picking-up-for-another')
+    another_pickup_name = request.form.get('pickup-for')
     allergies = request.form.get('allergies')
     special_requests = request.form.get('special-requests')
     
@@ -177,7 +178,7 @@ def handle_household_info():
         picking_up_for_another = False
     
     user_household = crud.create_household(user, num_people, wants_peanut_butter,
-                        picking_up_for_another, allergies, special_requests)
+                        picking_up_for_another, another_pickup_name, allergies, special_requests)
     
     available_appts = []
     all_appt_slots = crud.view_all_appt_slots()

@@ -112,6 +112,7 @@ class Household(db.Model):
     num_people = db.Column(db.Integer, nullable=False)
     wants_peanut_butter = db.Column(db.Boolean, nullable=False)
     picking_up_for_another = db.Column(db.Boolean)
+    another_pickup_name = db.Column(db.String(40))
     allergies = db.Column(db.String(30))
     special_requests = db.Column(db.Text)
 
@@ -169,7 +170,8 @@ def create_sample_data():
                             num_people=4,
                             wants_peanut_butter=False,
                             allergies='peanuts',
-                            picking_up_for_another=False)
+                            picking_up_for_another=True,
+                            another_pickup_name='Test Pickup')
     
     db.session.add(household)
     db.session.commit()

@@ -37,14 +37,15 @@ def create_appointment_slot(start_time, end_time, date):
     return appt_slot
 
 
-def create_household(user, num_people, wants_peanut_butter, picking_up_for_another,
-                    allergies=None, special_requests=None):
+def create_household(user, num_people, wants_peanut_butter, picking_up_for_another=False,
+                    another_pickup_name="", allergies=None, special_requests=None):
     """Creates a Household object for a user"""
 
     household = Household(user_id=user.user_id,
                             num_people=num_people,
                             wants_peanut_butter=wants_peanut_butter,
                             picking_up_for_another=picking_up_for_another,
+                            another_pickup_name=another_pickup_name,
                             allergies=allergies,
                             special_requests=special_requests)
     
