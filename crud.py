@@ -13,7 +13,7 @@ def create_admin(fname, lname, email, username, password):
     db.session.add(admin)
     db.session.commit()
 
-def create_user(fname, lname, email, username, password, phone_number):
+def create_user(fname, lname, email=None, username=None, password=None, phone_number=None):
     """Creates and returns a new user"""
 
     user = User(fname=fname, lname=lname, email=email, username=username,

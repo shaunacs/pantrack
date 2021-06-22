@@ -46,7 +46,7 @@ function DisplayUserApptForm() {
         pickupInput = <NotPickingUpForAnother onFalseClick={falsePickup} onTrueClick={truePickup} pickup={anotherPickup} />;
     }
 
-    reutrn (
+    return (
         <div>
             <label>First Name</label>
             <input type="text" name="fname"></input><br></br>
@@ -60,6 +60,7 @@ function DisplayUserApptForm() {
             <input type="radio" name="wants-peanut-butter" value="False"></input>
             <label>No</label><br></br>
             {pickupInput}
+            <input type="text" name="allergies"></input>
             <label>Allergies</label><br></br>
             <input type="text" name="special-requests"></input>
             <label>Any special requests?</label><br></br>
@@ -67,3 +68,9 @@ function DisplayUserApptForm() {
         </div>
     )
 }
+
+
+ReactDOM.render(
+    <DisplayUserApptForm />,
+    document.querySelector('#user-appt')
+)

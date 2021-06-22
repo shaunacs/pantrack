@@ -373,6 +373,52 @@ def admin_create_appt():
         return redirect('/')
 
 
+@app.route('/handle-admin-create-appt', methods=["POST"])
+def handle_admin_create_appt():
+    """Creates appointment for a user based on admin input"""
+
+    # User information
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    user = crud.create_user(fname, lname)
+
+    #Household info
+    num_people = request.form.get('num-people')
+    wants_peanut_butter = request.form.get('wants-peanut-butter')
+    picking_up_for_another = request.form.get('picking-up-for-another')
+    another_pickup_name = request.form.get('pickup-for')
+    allergies = request.form.get('allergies')
+    special_requests = request.form.get('special-requests')
+    # Changing strings to appropriate data type to create instance
+    if allergies == "":
+        allergies = None
+    if special_requests == "":
+        special_requests = None
+    
+    if wants_peanut_butter == "True":
+        wants_peanut_butter = True
+    else:
+        wants_peanut_butter = False
+    
+    if picking_up_for_another == "true":
+        picking_up_for_another = True
+    else:
+        picking_up_for_another = False
+    household = crud.create_household(user, num_people, wants_peanut_butter,
+                                    picking_up_for_another, another_pickup_name,
+                                    allergies, special_requests)
+
+    available_appts = []
+    all_appt_slots = crud.view_all_appt_slots()
+    for appt_slot in all_appt_slots:
+        if appt_slot.appointment == []:
+            available_appts.append(appt_slot)
+    
+    return render_template('admin_schedule_appt.html',
+                            available_appts=available_appts,
+                            user_id=user.user_id,
+                            household_id=household.household_id)
+
 
 
 if __name__ == '__main__':
