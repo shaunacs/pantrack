@@ -363,7 +363,7 @@ def handle_new_admin():
 
 @app.route('/create-user-appt')
 @login_required
-def admin_create_appt():
+def render_admin_create_appt():
     """Allows admins to manually create a user appointment"""
 
     if session['admin'] == True:
@@ -373,9 +373,9 @@ def admin_create_appt():
         return redirect('/')
 
 
-@app.route('/handle-admin-create-appt', methods=["POST"])
-def handle_admin_create_appt():
-    """Creates appointment for a user based on admin input"""
+@app.route('/handle-admin-create-user-household', methods=["POST"])
+def handle_admin_create_user_household():
+    """Creates user and household based on admin input"""
 
     # User information
     fname = request.form.get('fname')
@@ -404,6 +404,13 @@ def handle_admin_create_appt():
         picking_up_for_another = True
     else:
         picking_up_for_another = False
+    
+    print("*" * 30)
+    print(another_pickup_name)
+    print(type(another_pickup_name))
+    print("None:")
+    print(None)
+    print(type(None))
     household = crud.create_household(user, num_people, wants_peanut_butter,
                                     picking_up_for_another, another_pickup_name,
                                     allergies, special_requests)
@@ -420,6 +427,20 @@ def handle_admin_create_appt():
                             household_id=household.household_id)
 
 
+@app.route('/handle-admin-create-appt', methods=["POST"])
+def admin_create_appt():
+    """Admin creates appointment for user"""
+
+    user_id = request.form.get('user-id')
+    household_id = request.form.get('household-id')
+    user = User.query.get(user_id)
+    household = Household.query.get(household_id)
+    selected_appt_slot_str = request.form.get('appt_slot')
+    selected_appt_slot = crud.string_to_ApptSlot(selected_appt_slot_str)
+
+    crud.create_appointment(user, selected_appt_slot, household)
+
+    return redirect('/')
 
 if __name__ == '__main__':
     connect_to_db(app)
