@@ -41,6 +41,9 @@ def create_household(user, num_people, wants_peanut_butter, picking_up_for_anoth
                     another_pickup_name="", allergies=None, special_requests=None):
     """Creates a Household object for a user"""
 
+    if another_pickup_name == None:
+        another_pickup_name = ""
+        
     household = Household(user_id=user.user_id,
                             num_people=num_people,
                             wants_peanut_butter=wants_peanut_butter,

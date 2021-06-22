@@ -405,12 +405,6 @@ def handle_admin_create_user_household():
     else:
         picking_up_for_another = False
     
-    print("*" * 30)
-    print(another_pickup_name)
-    print(type(another_pickup_name))
-    print("None:")
-    print(None)
-    print(type(None))
     household = crud.create_household(user, num_people, wants_peanut_butter,
                                     picking_up_for_another, another_pickup_name,
                                     allergies, special_requests)
