@@ -451,6 +451,13 @@ def render_send_reminders_page():
         flash('You do not have access to this page.')
         return redirect('/')
 
+
+@app.route('/handle-send-reminders', methods=["POST"])
+def handle_send_reminders():
+    """Handles sending SMS reminders with Twilio"""
+
+
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(debug=True, use_reloader=True, use_debugger=True)
