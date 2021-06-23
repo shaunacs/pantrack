@@ -2,6 +2,8 @@
 from datetime import datetime, date
 from model import db, User, Appointment, AppointmentSlot, Household, Admin, connect_to_db
 from flask import session
+from twilio.rest import Client
+import os
 
 
 def create_admin(fname, lname, email, username, password):
@@ -177,6 +179,23 @@ def string_to_ApptSlot(appt_slot_str):
 
     return appt_slot
 
+
+def send_sms(to_num, msg_body):
+    """Sends SMS via Twilio API"""
+
+    # Your Account SID from twilio.com/console
+    account_sid = os.environ['ACCOUNT_SID']
+    # Your Auth Token from twilio.com/console
+    auth_token  = os.environ['AUTH_TOKEN']
+
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        to=to_num, 
+        from_=os.environ['FROM_PHONE_NUMBER'],
+        body=msg_body)
+
+    print(message.sid)
 
 
 if __name__ == '__main__':
