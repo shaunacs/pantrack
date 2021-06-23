@@ -456,6 +456,19 @@ def render_send_reminders_page():
 def handle_send_reminders():
     """Handles sending SMS reminders with Twilio"""
 
+    appt_ids = request.form.getlist('remind')
+
+    appt_phone_nums = crud.get_appt_phone_nums(appt_ids)
+
+    for phone in appt_phone_nums:
+        to_num = f'+1{appt_phone_nums[phone][0]}'
+        msg_body = f'''Hello, {phone}! This is PanTrack reminding
+                    you of your appointment to pickup food at {appt_phone_nums[phone][1]}.'''
+        print("*" * 30)
+        print(to_num)
+        print(msg_body)
+    
+    return redirect('/')
 
 
 if __name__ == '__main__':

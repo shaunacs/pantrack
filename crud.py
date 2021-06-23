@@ -189,7 +189,7 @@ def get_appt_phone_nums(appt_id_lst):
         appt_id = int(appt_id)
         appt = Appointment.query.get(appt_id)
         user = appt.user
-        appt_phone_nums[f'{appt.user.fname} {appt.user.lname}'] = user.phone_number
+        appt_phone_nums[f'{appt.user.fname} {appt.user.lname}'] = [user.phone_number, appt.appointment_slot.start_time]
 
     return appt_phone_nums
 
