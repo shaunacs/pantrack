@@ -53,7 +53,8 @@ function DisplayUserApptForm() {
             <label>Last Name</label>
             <input type="text" name="lname"></input><br></br>
             <label>Phone Number</label>
-            <input type="text" name="phone-number"></input><br></br>
+            <input type="tel" name="phone-number" pattern="[0-9]{10}"></input><br></br>
+            <small>Format: 1234567890</small><br></br>
             <label>Number of people in household</label>
             <input type="number" name="num-people" required></input><br></br>
             <label>Do they want peanut butter?</label>

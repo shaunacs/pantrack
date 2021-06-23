@@ -6,5 +6,19 @@
 {% block body %}
 <h1>Send Appointment Reminders</h1>
 <h2>All Upcoming Appointments</h2>
+<form>
+    <label>Select all you would like to remind</label><br>
+    <i>Only appointments with a valid phone number on file are available</i><br>
+    <table>
+        <tr>
+            <th>Select</th>
+            <th>Appointment DateTime</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="remind" value="yes">
+            <td>DateTime goes here</td>
+        </tr>
+    </table>
+</form>
 
 {% endblock %}

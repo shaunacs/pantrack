@@ -28,9 +28,8 @@ for n in range(10):
     email = f'user{n}@test.com'
     username = f'user{n}'
     password = 'test'
-    phone_number = '1212'
 
-    user = crud.create_user(fname, lname, email, username, password, phone_number)
+    user = crud.create_user(fname, lname, email, username, password)
 
 # create test appointment slots
 # date = date(2021, 6, 15)
