@@ -18,7 +18,7 @@
         {% for appt in upcoming_appts %}
             <tr>
                 {% if appt.user.phone_number %}
-                    <td><input type="checkbox" name="remind" value="yes"></td>
+                    <td><input type="checkbox" name="remind" value="{{appt.appointment_id}}"></td>
                 {% else %}
                     <td></td>
                 {% endif %}

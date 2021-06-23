@@ -180,6 +180,21 @@ def string_to_ApptSlot(appt_slot_str):
     return appt_slot
 
 
+def get_appt_phone_nums(appt_id_lst):
+    """Takes in a list of appointment ids and returns a dict of phone numbers associated"""
+
+    appt_phone_nums = {}
+
+    for appt_id in appt_id_lst:
+        appt_id = int(appt_id)
+        appt = Appointment.query.get(appt_id)
+        user = appt.user
+        appt_phone_nums[f'{appt.user.fname} {appt.user.lname}'] = user.phone_number
+
+    return appt_phone_nums
+
+
+
 def send_sms(to_num, msg_body):
     """Sends SMS via Twilio API"""
 
