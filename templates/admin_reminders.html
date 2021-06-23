@@ -14,10 +14,20 @@
             <th>Select</th>
             <th>Appointment DateTime</th>
         </tr>
-        <tr>
+        <!-- <tr>
             <td><input type="checkbox" name="remind" value="yes">
             <td>DateTime goes here</td>
-        </tr>
+        </tr> -->
+        {% for appt in upcoming_appts %}
+            <tr>
+                {% if appt.user.phone_number %}
+                    <td><input type="checkbox" name="remind" value="yes"></td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                <td>{{ appt.appointment_slot.start_time }}</td>
+            </tr>
+        {% endfor %}
     </table>
 </form>
 
