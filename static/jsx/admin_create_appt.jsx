@@ -52,6 +52,8 @@ function DisplayUserApptForm() {
             <input type="text" name="fname"></input><br></br>
             <label>Last Name</label>
             <input type="text" name="lname"></input><br></br>
+            <label>Phone Number</label>
+            <input type="text" name="phone-number"></input><br></br>
             <label>Number of people in household</label>
             <input type="number" name="num-people" required></input><br></br>
             <label>Do they want peanut butter?</label>

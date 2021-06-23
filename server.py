@@ -380,7 +380,8 @@ def handle_admin_create_user_household():
     # User information
     fname = request.form.get('fname')
     lname = request.form.get('lname')
-    user = crud.create_user(fname, lname)
+    phone_number = request.form.get('phone-number')
+    user = crud.create_user(fname, lname, phone_number=phone_number)
 
     #Household info
     num_people = request.form.get('num-people')
@@ -435,6 +436,20 @@ def admin_create_appt():
     crud.create_appointment(user, selected_appt_slot, household)
 
     return redirect('/')
+
+
+@app.route('/render-send-reminders')
+@login_required
+def render_send_reminders_page():
+    """Renders page for admin to send reminders"""
+
+    if session['admin'] == True:
+        upcoming_appts = crud.view_all_upcoming_appts()
+
+        return render_template('admin_reminders.html', upcoming_appts=upcoming_appts)
+    else:
+        flash('You do not have access to this page.')
+        return redirect('/')
 
 if __name__ == '__main__':
     connect_to_db(app)

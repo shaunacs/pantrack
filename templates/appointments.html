@@ -15,6 +15,7 @@
         <th>Picking Up For</th>
         <th>Allergies</th>
         <th>Special Requests</th>
+        <th>Phone Number</th>
     </tr>
     {% for appt in upcoming_appts %}
         <tr>
@@ -38,6 +39,7 @@
             {% else %}
                 <td>{{ appt.household.special_requests }}</td>
             {% endif %}
+            <td>{{ appt.user.phone_number }}</td>
         </tr>
     {% endfor %}
 </table>
