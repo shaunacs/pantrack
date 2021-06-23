@@ -462,11 +462,8 @@ def handle_send_reminders():
 
     for phone in appt_phone_nums:
         to_num = f'+1{appt_phone_nums[phone][0]}'
-        msg_body = f'''Hello, {phone}! This is PanTrack reminding
-                    you of your appointment to pickup food at {appt_phone_nums[phone][1]}.'''
-        print("*" * 30)
-        print(to_num)
-        print(msg_body)
+        msg_body = f'''Hello, {phone}! This is PanTrack reminding you of your appointment to pickup food at {appt_phone_nums[phone][1]}.'''
+        crud.send_sms(to_num, msg_body)
     
     return redirect('/')
 
