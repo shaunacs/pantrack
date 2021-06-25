@@ -43,6 +43,7 @@ def render_hompeage():
             user_next_appt = user.appointments[-1].appointment_slot.start_time
             if datetime.now() <= user_next_appt:
                 has_appt = True
+                user_next_appt = user_next_appt.strftime("%B %d, %Y @ %I:%M%p")
             else:
                 user_next_appt = "You do not yet have an appointment. Schedule one now."
                 has_appt = False
@@ -63,7 +64,9 @@ def find_next_user_appt():
 
     user_next_appt = user.appointments[-1].appointment_slot.start_time
 
-    return str(user_next_appt)
+    user_next_appt = user_next_appt.strftime("%B %d, %Y at %I:%M%p")
+
+    return user_next_appt
 
 
 @app.route('/log-in', methods=["POST"])

@@ -3,7 +3,6 @@
 // Pop up that confirms the user wants to cancel their appointment
 $('#cancel-appt').on('click', () => {
    
-    alert("Your appointment has been cancelled")
     location.href = "/handle-cancel-appt"
     
 })
