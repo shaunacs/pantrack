@@ -180,11 +180,17 @@ def handle_household_info():
     user_household = crud.create_household(user, num_people, wants_peanut_butter,
                         picking_up_for_another, another_pickup_name, allergies, special_requests)
     
-    available_appts = []
+    # available_appts = []
+    # all_appt_slots = crud.view_all_appt_slots()
+    # for appt_slot in all_appt_slots:
+    #     if appt_slot.appointment == []:
+    #         available_appts.append(appt_slot)
+
+    available_appts = {}
     all_appt_slots = crud.view_all_appt_slots()
     for appt_slot in all_appt_slots:
         if appt_slot.appointment == []:
-            available_appts.append(appt_slot)
+            available_appts[appt_slot] = appt_slot.start_time.strftime("%B %d, %Y at %I:%M%p")
     
     return render_template('schedule_appointment.html',
                             available_appts=available_appts)

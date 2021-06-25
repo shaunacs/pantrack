@@ -9,7 +9,7 @@
     <form action="/handle-schedule-appt" method="POST">
     {% for appt_slot in available_appts %}
         <input type="radio" name="appt_slot" value="{{appt_slot.start_time}}">
-        <label>{{ appt_slot.start_time }}</label><br>
+        <label>{{ available_appts[appt_slot] }}</label><br>
     {% endfor %}
     <input type="submit" name="submit">
     </form>
