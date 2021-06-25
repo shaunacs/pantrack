@@ -4,23 +4,49 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-<h1>Welcome to PanTrack, {{ current_user.fname }}</h1>
-<h2>Schedule your food pantry appointment here!</h2>
-{% if has_appt == True %}
-  <div id="next-appt">Your next appointment is: <br>
-    {{ user_next_appt }}</div><br>
-  
-  <button id="cancel-appt" action="/handle-cancel-appt">Click here to cancel your appointment</button>
-{% endif %}
+<div class="container">
+  <h1>Welcome to PanTrack, {{ current_user.fname }}</h1>
+  <h2>Schedule your food pantry appointment here!</h2>
+  {% if has_appt == True %}
+    <div id="next-appt">Your next appointment is: <br>
+      {{ user_next_appt }}</div><br>
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Cancel Appointment
+    </button>
 
-{% if has_appt == False %}
-<p>Schedule an appointment <a href="/household-info">here</a></p>
-{% endif %}
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cancel Appointment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to cancel your appointment?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary" id="cancel-appt">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-{% if current_user.is_authenticated %}
-  <form action="/logout">
-    <button id="log-out-button">Log Out</button>
-  </form>
-{% endif %}
+    <!-- <button id="cancel-appt" action="/handle-cancel-appt">Click here to cancel your appointment</button> -->
+  {% endif %}
 
+  {% if has_appt == False %}
+  <p>Schedule an appointment <a href="/household-info">here</a></p>
+  {% endif %}
+
+  {% if current_user.is_authenticated %}
+    <form action="/logout">
+      <button id="log-out-button">Log Out</button>
+    </form>
+  {% endif %}
+</div>
+<!-- <script type="text/jsx" src="/static/jsx/cancel_appointment.jsx"></script> -->
 {% endblock %}

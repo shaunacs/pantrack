@@ -4,16 +4,18 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-<h1>Welcome to PanTrack</h1>
-<h2>Please log in to view and/or schedule your appointment</h2>
-<form action="/log-in" method="POST">
-    <label class="form-label">Username</label>
-    <input type="text" class="form-control" name="username" size="50"><br>
+<div class="container">
+    <h1>Welcome to PanTrack</h1>
+    <h2>Please log in to view and/or schedule your appointment</h2>
+    <form action="/log-in" method="POST">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" size="50"><br>
 
-    <label class="form-label">Password</label>
-    <input type="password" class="form-control" name="password" size="50">
-    
-    <input type="submit" id="log-in">
-</form>
-<p>Don't have an account?<a href="/create-account">Click here!</a></p>
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" size="50"><br>
+        
+        <input type="submit" id="log-in" class="btn btn-primary">
+    </form>
+    <p>Don't have an account? <a href="/create-account">Click here!</a></p>
+</div>
 {% endblock %}

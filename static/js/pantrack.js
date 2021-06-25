@@ -2,12 +2,10 @@
 
 // Pop up that confirms the user wants to cancel their appointment
 $('#cancel-appt').on('click', () => {
-    const cancel = confirm('Are you sure you want to cancel this appointment?');
-
-    if (cancel) {
-        alert("Your appointment has been cancelled")
-        location.href = "/handle-cancel-appt"
-    }
+   
+    alert("Your appointment has been cancelled")
+    location.href = "/handle-cancel-appt"
+    
 })
 
 // Alert that tells admin their selected appointments have been deleted
