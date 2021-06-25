@@ -4,23 +4,25 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-<h1>Create New Admin</h1>
-<form action="handle-new-admin" method="POST">
-    <label>First Name</label>
-    <input type="text" name="fname"><br>
+<div class="container">
+    <h1>Create New Admin</h1>
+    <form action="handle-new-admin" method="POST">
+        <label>First Name</label>
+        <input type="text" name="fname"><br>
 
-    <label>Last Name</label>
-    <input type="text" name="lname"><br>
+        <label>Last Name</label>
+        <input type="text" name="lname"><br>
 
-    <label>Email</label>
-    <input type="email" name="email"><br>
+        <label>Email</label>
+        <input type="email" name="email"><br>
 
-    <label>Username</label>
-    <input type="text" name="username"><br>
+        <label>Username</label>
+        <input type="text" name="username"><br>
 
-    <label>Password</label>
-    <input type="password" name="password"><br>
+        <label>Password</label>
+        <input type="password" name="password"><br>
 
-    <input type="submit" name="submit">
-</form>
+        <input type="submit" name="submit">
+    </form>
+</div>
 {% endblock %}

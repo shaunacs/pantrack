@@ -4,18 +4,20 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-<p>User ID: {{ user_id }}</p>
-<p>Household ID: {{ household_id }}</p>
-<p>Choose a pick up time!</p>
-<form action="/handle-admin-create-appt" method="POST">
-    <label>User ID:</label>
-    <input type="number" name="user-id" required value="{{ user_id }}"><br>
-    <label>Household ID:</label>
-    <input type="number" name="household-id" required value="{{ household_id }}"><br>
-{% for appt_slot in available_appts %}
-    <input type="radio" name="appt_slot" value="{{appt_slot.start_time}}">
-    <label>{{ appt_slot.start_time }}</label><br>
-{% endfor %}
-<input type="submit" name="submit">
-</form>
+<div class="container">
+    <p>User ID: {{ user_id }}</p>
+    <p>Household ID: {{ household_id }}</p>
+    <p>Choose a pick up time!</p>
+    <form action="/handle-admin-create-appt" method="POST">
+        <label>User ID:</label>
+        <input type="number" name="user-id" required value="{{ user_id }}"><br>
+        <label>Household ID:</label>
+        <input type="number" name="household-id" required value="{{ household_id }}"><br>
+    {% for appt_slot in available_appts %}
+        <input type="radio" name="appt_slot" value="{{appt_slot.start_time}}">
+        <label>{{ appt_slot.start_time }}</label><br>
+    {% endfor %}
+    <input type="submit" name="submit">
+    </form>
+</div>
 {% endblock %}

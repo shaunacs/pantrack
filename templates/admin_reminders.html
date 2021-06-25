@@ -4,30 +4,31 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-<h1>Send Appointment Reminders</h1>
-<h2>All Upcoming Appointments</h2>
-<form action="/handle-send-reminders" method="POST">
-    <label>Select all you would like to remind</label><br>
-    <i>Only appointments with a valid phone number on file are available</i><br>
-    <table>
-        <tr>
-            <th>Select</th>
-            <th>Appointment DateTime</th>
-            <th>Name</th>
-        </tr>
-        {% for appt in upcoming_appts %}
+<div class="container">
+    <h1>Send Appointment Reminders</h1>
+    <h2>All Upcoming Appointments</h2>
+    <form action="/handle-send-reminders" method="POST">
+        <label>Select all you would like to remind</label><br>
+        <i>Only appointments with a valid phone number on file are available</i><br>
+        <table>
             <tr>
-                {% if appt.user.phone_number %}
-                    <td><input type="checkbox" name="remind" value="{{appt.appointment_id}}"></td>
-                {% else %}
-                    <td></td>
-                {% endif %}
-                <td>{{ appt.appointment_slot.start_time }}</td>
-                <td>{{ appt.user.fname }} {{ appt.user.lname }}</td>
+                <th>Select</th>
+                <th>Appointment DateTime</th>
+                <th>Name</th>
             </tr>
-        {% endfor %}
-    </table>
-    <input type="submit" name="submit">
-</form>
-
+            {% for appt in upcoming_appts %}
+                <tr>
+                    {% if appt.user.phone_number %}
+                        <td><input type="checkbox" name="remind" value="{{appt.appointment_id}}"></td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    <td>{{ appt.appointment_slot.start_time }}</td>
+                    <td>{{ appt.user.fname }} {{ appt.user.lname }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" name="submit">
+    </form>
+</div>
 {% endblock %}

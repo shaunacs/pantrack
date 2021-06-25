@@ -4,18 +4,20 @@
 {% block head %}{% endblock %}
 
 {% block body %}
+<div class="container">
 <h1>Create Appointment Slots</h1>
-<form action="/handle-create-appt-slots" method="POST">
-    <label>Start Time</label>
-    <input type="datetime-local" name="start-time" required><br>
-    
-    <label>End Time</label>
-    <input type="datetime-local" name="end-time" required><br>
-    
-    <label>Minutes Between Each Appointment</label>
-    <input type="number" name="time-delta" required><br>
+    <form action="/handle-create-appt-slots" method="POST">
+        <label>Start Time</label>
+        <input type="datetime-local" name="start-time" required><br>
+        
+        <label>End Time</label>
+        <input type="datetime-local" name="end-time" required><br>
+        
+        <label>Minutes Between Each Appointment</label>
+        <input type="number" name="time-delta" required><br>
 
-    <input type="submit" name="submit">
+        <input type="submit" name="submit">
 
-</form>
+    </form>
+</div>
 {% endblock %}

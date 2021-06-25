@@ -4,8 +4,10 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-<h1>Household Info</h1>
-<form action="/handle-admin-create-user-household" method="POST" id="user-appt"></form>
+<div class="container">
+    <h1>Household Info</h1>
+    <form action="/handle-admin-create-user-household" method="POST" id="user-appt"></form>
 
-<script type="text/jsx" src="/static/jsx/admin_create_appt.jsx"></script>
+    <script type="text/jsx" src="/static/jsx/admin_create_appt.jsx"></script>
+</div>
 {% endblock %}

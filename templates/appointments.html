@@ -4,45 +4,47 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-<h1>All Upcoming Appointments</h1>
-<table>
-    <tr>
-        <th>Time</th>
-        <th>Name</th>
-        <th>People in Household</th>
-        <th>Wants Peanut Butter</th>
-        <th>Picking Up for Someone Else</th>
-        <th>Picking Up For</th>
-        <th>Allergies</th>
-        <th>Special Requests</th>
-        <th>Phone Number</th>
-    </tr>
-    {% for appt in upcoming_appts %}
+<div class="container">
+    <h1>All Upcoming Appointments</h1>
+    <table>
         <tr>
-            <td>{{ appt.appointment_slot.start_time }}</td>
-            <td>{{ appt.user.fname }} {{ appt.user.lname }}</td>
-            <td>{{ appt.household.num_people }}</td>
-            {% if appt.household.wants_peanut_butter == True %}
-                <td><span>&#10003;</span></td>
-            {% else %}
-                <td></td>
-            {% endif %}
-            <td>{{ appt.household.picking_up_for_another }}</td>
-            <td>{{ appt.household.another_pickup_name }}</td>
-            {% if appt.household.allergies == None %}
-                <td></td>
-            {% else %}
-                <td>{{ appt.household.allergies }}</td>
-            {% endif %}
-            {% if appt.household.special_requests == None %}
-                <td></td>
-            {% else %}
-                <td>{{ appt.household.special_requests }}</td>
-            {% endif %}
-            <td>{{ appt.user.phone_number }}</td>
+            <th>Time</th>
+            <th>Name</th>
+            <th>People in Household</th>
+            <th>Wants Peanut Butter</th>
+            <th>Picking Up for Someone Else</th>
+            <th>Picking Up For</th>
+            <th>Allergies</th>
+            <th>Special Requests</th>
+            <th>Phone Number</th>
         </tr>
-    {% endfor %}
-</table>
+        {% for appt in upcoming_appts %}
+            <tr>
+                <td>{{ appt.appointment_slot.start_time }}</td>
+                <td>{{ appt.user.fname }} {{ appt.user.lname }}</td>
+                <td>{{ appt.household.num_people }}</td>
+                {% if appt.household.wants_peanut_butter == True %}
+                    <td><span>&#10003;</span></td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                <td>{{ appt.household.picking_up_for_another }}</td>
+                <td>{{ appt.household.another_pickup_name }}</td>
+                {% if appt.household.allergies == None %}
+                    <td></td>
+                {% else %}
+                    <td>{{ appt.household.allergies }}</td>
+                {% endif %}
+                {% if appt.household.special_requests == None %}
+                    <td></td>
+                {% else %}
+                    <td>{{ appt.household.special_requests }}</td>
+                {% endif %}
+                <td>{{ appt.user.phone_number }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
 
 <!-- Admin can choose a day -->
