@@ -210,6 +210,8 @@ def handle_schedule_appointment():
 
     appt = crud.create_appointment(user, selected_appt_slot, household)
 
+    flash("Your appointment was successfully scheduled.")
+
     return redirect('/')
 
 
@@ -432,6 +434,8 @@ def admin_create_appt():
     selected_appt_slot = crud.string_to_ApptSlot(selected_appt_slot_str)
 
     crud.create_appointment(user, selected_appt_slot, household)
+
+    flash(f'Appointment for {user.fname} {user.lname} successfully scheduled.')
 
     return redirect('/')
 
