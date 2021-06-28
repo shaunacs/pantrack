@@ -3,6 +3,10 @@
 // Pop up that confirms the user wants to cancel their appointment
 $('#cancel-appt').on('click', () => {
    
+    // $.get('/handle-cancel-appt', (res) => {
+    //     $('#confirmation').text(res);
+    //     location.href = "/"
+    // })
     location.href = "/handle-cancel-appt"
     
 })

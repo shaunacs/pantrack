@@ -221,6 +221,8 @@ def handle_cancel_appt():
     user = crud.find_user_by_username()
     crud.cancel_last_appt(user)
 
+    flash("Your appointment has been cancelled.")
+
     return redirect('/')
 
 
