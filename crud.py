@@ -160,6 +160,20 @@ def view_all_usernames():
     
     return all_usernames
 
+
+def view_all_admin_usernames():
+    """Returns a list of all Admin usernames"""
+
+    all_admin = Admin.query.all()
+
+    admin_usernames = []
+
+    for admin in all_admin:
+        username = admin.username
+        admin_usernames.append(username)
+    
+    return admin_usernames
+
 def find_user_by_username():
     """Finds a user associated with username in session"""
 
@@ -189,7 +203,7 @@ def get_appt_phone_nums(appt_id_lst):
         appt_id = int(appt_id)
         appt = Appointment.query.get(appt_id)
         user = appt.user
-        appt_phone_nums[f'{appt.user.fname} {appt.user.lname}'] = [user.phone_number, appt.appointment_slot.start_time]
+        appt_phone_nums[f'{appt.user.fname} {appt.user.lname}'] = [user.phone_number, appt.appointment_slot.start_time.strftime("%B %d, %Y @ %I:%M%p")]
 
     return appt_phone_nums
 

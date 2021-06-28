@@ -293,6 +293,8 @@ def handle_create_appt_slots():
         appt_slot = crud.create_appointment_slot(start_time, end_time, date)
         start_time += delta
     
+    flash('Appointment slots created.')
+    
     return redirect('/admin')
 
 
@@ -302,10 +304,14 @@ def render_delete_appt_slot_page():
     """Allows admins to delete selected available appointment slots"""
 
     if session['admin'] == True:
-        avail_appts = crud.view_all_avail_appt_slots()
+        available_appts = {}
+        all_appt_slots = crud.view_all_appt_slots()
+        for appt_slot in all_appt_slots:
+            if appt_slot.appointment == []:
+                available_appts[appt_slot] = appt_slot.start_time.strftime("%B %d, %Y at %I:%M%p")
   
         return render_template('admin_delete_appt_slots.html',
-                                avail_appts=avail_appts)
+                                available_appts=available_appts)
     else:
         flash('You do not have access to this page.')
         return redirect('/')
@@ -329,6 +335,8 @@ def handle_delete_appt_slots():
         print(slot.start_time)
         start_time = slot.start_time
         crud.delete_ApptSlot(slot.start_time)
+    
+    flash('Selected appointment slots deleted.')
 
     return redirect('/')
 
@@ -356,9 +364,17 @@ def handle_new_admin():
     username = request.form.get('username')
     password = request.form.get('password')
 
-    crud.create_admin(fname, lname, email, username, password)
+    if username in crud.view_all_usernames():
+        flash('Username already taken')
+        return redirect('/create-new-admin')
+    elif username in crud.view_all_admin_usernames():
+        flash('Username already taken')
+        return redirect('/create-new-admin')      
+    else:
+        crud.create_admin(fname, lname, email, username, password)
 
-    return redirect('/')
+        flash(f'{fname} {lname} now has admin access.')
+        return redirect('/')
 
 
 @app.route('/create-user-appt')
@@ -466,6 +482,8 @@ def handle_send_reminders():
         to_num = f'+1{appt_phone_nums[phone][0]}'
         msg_body = f'''Hello, {phone}! This is PanTrack reminding you of your appointment to pickup food at {appt_phone_nums[phone][1]}.'''
         crud.send_sms(to_num, msg_body)
+    
+    flash('Appointment SMS reminders sent.')
     
     return redirect('/')
 

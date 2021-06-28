@@ -8,9 +8,9 @@
     <h1>Delete Appointment Slots</h1>
     <div>Select the appointment slots you would like to delete</div>
     <form action="/handle-delete-appt-slots" method="POST">
-    {% for slot in avail_appts %}
-        <input type="checkbox" name="avail-slot" value="{{slot.start_time}}">
-        <label>{{ slot.start_time }}</label><br>
+    {% for appt_slot in available_appts %}
+        <input type="checkbox" name="avail-slot" value="{{appt_slot.start_time}}">
+        <label>{{ available_appts[appt_slot] }}</label><br>
     {% endfor %}
         <input type="submit" name="submit" id="delete-appt-slot">
     </form>
