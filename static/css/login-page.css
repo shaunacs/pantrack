@@ -1,8 +1,23 @@
-#banner {
+/* #banner {
     width: 100%;
     background-image: url(https://images.unsplash.com/photo-1615897570582-285ffe259530?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80);
-    height: 405px;
+    height: 300px;
     background-position: center;
     padding: 0px;
     zoom: 75%;
+    filter: blur(5px) grayscale(50%);
+} */
+
+#banner {
+    width: 100%;
+    background-color: #91C499;
+    height: 200px;
+    background-position: center;
+    padding: 0px;
+    text-align: center;
+}
+
+#welcome {
+    text-align: center;
+    line-height: 175px;
 }
