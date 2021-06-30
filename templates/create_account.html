@@ -1,33 +1,39 @@
 {% extends 'base.html' %}
 {% block title %}PanTrack Create an Account{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/create-account.css">
+{% endblock %}
 
 {% block body %}
 <div class="container">
-    <h1>Create an account</h1>
-    <form action="/handle-create-account" method="POST">
-        <label class="form-label">First Name</label>
-        <input type="text" name="fname" class="form-control form-control-sm"><br>
+    <div class="row">
+        <div class="col-xs-12 col-lg-6">
+            <h1>Create an account</h1>
+            <form action="/handle-create-account" method="POST">
+                <label class="form-label">First Name</label>
+                <input type="text" name="fname" class="form-control form-control-sm"><br>
 
-        <label class="form-label">Last Name</label>
-        <input type="text" name="lname" class="form-control form-control-sm"><br>
+                <label class="form-label">Last Name</label>
+                <input type="text" name="lname" class="form-control form-control-sm"><br>
 
-        <label class="form-label">Email address</label>
-        <input type="email" name="email" class="form-control form-control-sm" placeholder="email@email.com "><br>
+                <label class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control form-control-sm" placeholder="email@email.com "><br>
 
-        <label class="form-label">Username</label>
-        <input type="text" name="username" class="form-control form-control-sm"><br>
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-control form-control-sm"><br>
 
-        <label class="form-label">Password</label>
-        <input type="password" name="password" class="form-control form-control-sm"><br>
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control form-control-sm"><br>
 
-        <label class="form-label">Phone number</label>
-        <input type="tel" name="phone-number" pattern="[0-9]{10}" class="form-control form-control-sm"><br>
-        <small>Format: 123456789</small><br>
+                <label class="form-label">Phone number</label>
+                <input type="tel" name="phone-number" pattern="[0-9]{10}" class="form-control form-control-sm"><br>
+                <small>Format: 123456789</small><br>
 
-        <input type="submit" name="submit" id="create-account">
+                <input type="submit" name="submit" id="create-account">
 
-    </form>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

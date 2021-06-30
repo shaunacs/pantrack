@@ -12,20 +12,24 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-lg-7">
-            <h2>Please log in to view and/or schedule your appointment</h2>
+            <div class="side-text">
+                <h2>Please log in to view and/or schedule your appointment</h2>
+            </div>
         </div>
 
         <div class="col-xs-12 col-lg-5">
-            <form action="/log-in" method="POST">
-                <label class="form-label">Username</label>
-                <input type="text" class="form-control" name="username" size="50"><br>
+            <div class="login">
+                <form action="/log-in" method="POST">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" size="50"><br>
 
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" size="50"><br>
-                
-                <input type="submit" id="log-in" class="btn btn-primary">
-            </form>
-            <p>Don't have an account? <a href="/create-account">Click here!</a></p>
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" size="50"><br>
+                    
+                    <input type="submit" id="log-in" class="btn btn-primary">
+                </form>
+                <p class="no-account">Don't have an account? <a href="/create-account">Click here!</a></p>
+            </div>
         </div>
     </div>
 </div>
