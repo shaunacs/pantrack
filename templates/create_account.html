@@ -6,11 +6,13 @@
 {% endblock %}
 
 {% block body %}
+<div id="banner">
+    <h1 id="create">PanTrack - Create an Account</h1>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-lg-6">
-            <h1>Create an account</h1>
-            <form action="/handle-create-account" method="POST">
+            <form class="create-account" action="/handle-create-account" method="POST">
                 <label class="form-label">First Name</label>
                 <input type="text" name="fname" class="form-control form-control-sm"><br>
 
@@ -30,7 +32,7 @@
                 <input type="tel" name="phone-number" pattern="[0-9]{10}" class="form-control form-control-sm"><br>
                 <small>Format: 123456789</small><br>
 
-                <input type="submit" name="submit" id="create-account">
+                <input type="submit" name="submit" class="submit" id="create-account">
 
             </form>
         </div>

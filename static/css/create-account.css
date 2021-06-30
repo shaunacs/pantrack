@@ -7,7 +7,7 @@
     text-align: center;
 }
 
-#welcome {
+#create {
     text-align: center;
     line-height: 175px;
     color: white;
@@ -19,18 +19,11 @@ h1 {
     font-size: 200px;
 }
 
-.side-text {
-    font-family: 'Castoro';
-    margin-top: 20px;
-    font-style: italic;
-    text-align: center;
-}
-
-.login {
+.create-account {
     font-family: 'Roboto', sans-serif;
     margin-top: 20px;
 }
 
-.no-account {
+.submit {
     margin-top: 10px;
 }
