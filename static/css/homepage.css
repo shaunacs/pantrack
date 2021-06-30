@@ -1,0 +1,35 @@
+#banner {
+    width: 100%;
+    background-image: url(https://images.unsplash.com/photo-1554050857-c84a8abdb5e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80);
+    height: 200px;
+    background-position: center;
+    padding: 0px;
+    text-align: center;
+}
+
+#welcome {
+    text-align: center;
+    line-height: 175px;
+    color: white;
+}
+
+h1 {
+    font-family: 'Castoro', serif;
+    font-weight: 400;
+    font-size: 200px;
+}
+
+.appointment {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 20px;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+#schedule {
+    background-color: #832232;
+    border-color: #832232;
+    color: white;
+}

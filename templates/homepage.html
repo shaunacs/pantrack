@@ -1,51 +1,53 @@
 {% extends 'base.html' %}
 {% block title %}PanTrack Home{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/homepage.css">
+{% endblock %}
 
 {% block body %}
+<div id="banner">
+  <h1 id="welcome">Welcome to PanTrack, {{ current_user.fname }}</h1>
+</div>
 <div class="container">
-  <div id="confirmation"></div>
-  <h1>Welcome to PanTrack, {{ current_user.fname }}</h1>
-  <h2>Schedule your food pantry appointment here!</h2>
-  {% if has_appt == True %}
-    <div id="next-appt">Your next appointment is: <br>
-      {{ user_next_appt }}</div><br>
-    
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cancel-appt-modal">
-      Cancel Appointment
-    </button>
+  <div class="appointment">
+    <h2>Schedule your food pantry appointment here!</h2>
+    {% if has_appt == True %}
+      <div id="next-appt">Your next appointment is: <br>
+        {{ user_next_appt }}</div><br>
+      
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cancel-appt-modal">
+        Cancel Appointment
+      </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="cancel-appt-modal" tabindex="-1" aria-labelledby="cancel-appt-modalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="cancel-modal-title">Cancel Appointment</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Are you sure you want to cancel your appointment?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary" id="cancel-appt">Yes</button>
+      <!-- Modal -->
+      <div class="modal fade" id="cancel-appt-modal" tabindex="-1" aria-labelledby="cancel-appt-modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cancel-modal-title">Cancel Appointment</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to cancel your appointment?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary" id="cancel-appt">Yes</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  {% endif %}
+    {% endif %}
 
-  {% if has_appt == False %}
-  <p>Schedule an appointment <a href="/household-info">here</a></p>
-  {% endif %}
+    {% if has_appt == False %}
+    <a id="schedule" class="btn btn-lg" href="/household-info">Schedule an Appointment</a>
+    {% endif %}
+  </div>
 
   {% if current_user.is_authenticated %}
-    <form action="/logout">
-      <button id="log-out-button">Log Out</button>
-    </form>
+    <button id="log-out-button" type="button" class="btn btn-dark">Log Out</button>
   {% endif %}
 </div>
-<!-- <script type="text/jsx" src="/static/jsx/cancel_appointment.jsx"></script> -->
 {% endblock %}

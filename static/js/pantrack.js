@@ -7,3 +7,6 @@ $('#cancel-appt').on('click', () => {
     
 })
 
+$('#log-out-button').on('click', () => {
+    location.href = "/logout"
+})
