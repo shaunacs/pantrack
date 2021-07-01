@@ -14,19 +14,19 @@
         <div class="col-xs-12 col-lg-6">
             <form class="create-account" action="/handle-create-account" method="POST">
                 <label class="form-label">First Name</label>
-                <input type="text" name="fname" class="form-control form-control-sm"><br>
+                <input type="text" name="fname" class="form-control form-control-sm" required><br>
 
                 <label class="form-label">Last Name</label>
-                <input type="text" name="lname" class="form-control form-control-sm"><br>
+                <input type="text" name="lname" class="form-control form-control-sm" required><br>
 
                 <label class="form-label">Email address</label>
                 <input type="email" name="email" class="form-control form-control-sm" placeholder="email@email.com "><br>
 
                 <label class="form-label">Username</label>
-                <input type="text" name="username" class="form-control form-control-sm"><br>
+                <input type="text" name="username" class="form-control form-control-sm" required><br>
 
                 <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-control form-control-sm"><br>
+                <input type="password" name="password" class="form-control form-control-sm" required><br>
 
                 <label class="form-label">Phone number <i>(Include phone number to receive SMS reminders)</i></label>
                 <input type="tel" name="phone-number" pattern="[0-9]{10}" class="form-control form-control-sm" ><br>
