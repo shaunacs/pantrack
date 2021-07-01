@@ -10,6 +10,11 @@
   <h1 id="welcome">Welcome to PanTrack, {{ current_user.fname }}</h1>
 </div>
 <div class="container">
+  {% if current_user.is_authenticated %}
+  <div class="logout">
+    <button id="log-out-button" type="button" class="btn btn-light">Log Out</button>
+  </div>
+{% endif %}
   <div class="appointment">
     <h2>Schedule your food pantry appointment here!</h2>
     {% if has_appt == True %}
@@ -46,10 +51,10 @@
     {% endif %}
   </div>
 
-  {% if current_user.is_authenticated %}
+  <!-- {% if current_user.is_authenticated %}
     <div class="logout">
       <button id="log-out-button" type="button" class="btn btn-dark">Log Out</button>
     </div>
-  {% endif %}
+  {% endif %} -->
 </div>
 {% endblock %}

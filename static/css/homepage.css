@@ -34,3 +34,9 @@ h1 {
     border-color: #832232;
     color: white;
 }
+
+.logout {
+    position: absolute;
+    right: 15px;
+    top: 5px
+}
