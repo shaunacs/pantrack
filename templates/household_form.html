@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}Household Info{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/household-form.css">
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1>Household Info</h1>
-    <form action="/handle-household-info" method="POST" id="household-info"></form>
-
-    <script type="text/jsx" src="/static/jsx/household_form.jsx"></script>
+<div id="banner">
+    <h1 id="banner-text">PanTrack - Household Info</h1>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-lg-6">
+            <form class="household-form" action="/handle-household-info" method="POST" id="household-info"></form>
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-6">Text goes here</h1>
+        </div>
+    </div>
+</div>
+<script type="text/jsx" src="/static/jsx/household_form.jsx"></script>
 {% endblock %}
