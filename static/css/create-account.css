@@ -24,6 +24,18 @@ h1 {
     margin-top: 20px;
 }
 
-.submit {
+#create-account.btn.btn-lg {
     margin-top: 10px;
+    background-color: #832232;
+    color: white;
+}
+
+.display-6 {
+    text-align: center;
+    padding: 70px 0;
+    margin-left: 20px;
+}
+
+i {
+    color: #832232;
 }

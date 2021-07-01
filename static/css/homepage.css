@@ -22,6 +22,7 @@ h1 {
 .appointment {
     font-family: 'Roboto', sans-serif;
     margin-top: 20px;
+    text-align: center;
 }
 
 .btn {
