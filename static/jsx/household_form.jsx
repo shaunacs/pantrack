@@ -3,12 +3,12 @@
 function PickingUpForAnother(props) {
     return (
         <div>
-            <label>Are you picking up for anyone else?</label>
+            <label class="form-label">Are you picking up for anyone else?</label>
             <input onClick={props.onTrueClick} type="radio" name="picking-up-for-another" value={props.pickup} defaultChecked></input>
-            <label>Yes</label>
+            <label class="form-label">Yes</label>
             <input onClick={props.onFalseClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
-            <label>No</label><br></br>
-            <label>Who are you picking up for?</label>
+            <label class="form-label">No</label><br></br>
+            <label class="form-label">Who are you picking up for?</label>
             <input type="text" name="pickup-for" id="pickup-for"></input><br></br>
         </div>
     )
@@ -17,11 +17,11 @@ function PickingUpForAnother(props) {
 function NotPickingUpForAnother(props) {
     return (
         <div>
-            <label>Are you picking up for anyone else?</label>
+            <label class="form-label">Are you picking up for anyone else?</label>
             <input onClick={props.onTrueClick} type="radio" name="picking-up-for-another" value={props.pickup}></input>
-            <label>Yes</label>
+            <label class="form-label">Yes</label>
             <input onClick={props.onFalseClick} type="radio" name="picking-up-for-another" value={props.pickup} defaultChecked></input>
-            <label>No</label><br></br>
+            <label class="form-label">No</label><br></br>
         </div>
     )
 }
@@ -48,18 +48,24 @@ function DisplayHouseholdForm() {
 
     return (
         <div>
-            <input type="number" name="num-people" required></input>
-            <label>Number of people in household</label><br></br>
-            <label>Would you like peanut butter?</label>
+            <div class="row">
+                <div class="col-lg-5">
+                    <label class="form-label">Number of people in household</label>
+                </div>
+                <div class="col-lg-3">
+                    <input class="form-control" type="number" name="num-people" required></input>
+                </div>
+            </div>
+            <label class="form-label">Would you like peanut butter?</label>
             <input type="radio" name="wants-peanut-butter"  value="True"></input>
-            <label>Yes</label>
+            <label class="form-label">Yes</label>
             <input type="radio" name="wants-peanut-butter" value="False"></input>
-            <label>No</label><br></br>
+            <label class="form-label">No</label><br></br>
             {pickupInput}
             <input type="text" name="allergies"></input>
-            <label>Allergies</label><br></br>
+            <label class="form-label">Allergies</label><br></br>
             <input type="text" name="special-requests"></input>
-            <label>Any special requests?</label><br></br>
+            <label class="form-label">Any special requests?</label><br></br>
             <input type="submit" name="submit"></input>
         </div>
     )
