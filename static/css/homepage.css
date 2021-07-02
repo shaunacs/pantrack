@@ -40,3 +40,15 @@ h1 {
     right: 15px;
     top: 5px
 }
+
+#cancel-button {
+    background-color: #832232;
+    border-color: #832232;
+    color: white;
+}
+
+#cancel-appt {
+    background-color: #832232;
+    border-color: #832232;
+    color: white;
+}
