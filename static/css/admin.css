@@ -19,20 +19,10 @@ h1 {
     font-size: 200px;
 }
 
-.appointment {
+#admin-task {
     font-family: 'Roboto', sans-serif;
     margin-top: 20px;
     text-align: center;
-}
-
-.btn {
-    margin-top: 10px;
-}
-
-#schedule {
-    background-color: #832232;
-    border-color: #832232;
-    color: white;
 }
 
 .logout {
@@ -41,21 +31,9 @@ h1 {
     top: 5px
 }
 
-#cancel-button {
+a.btn {
     background-color: #832232;
     border-color: #832232;
     color: white;
-}
-
-#cancel-appt {
-    background-color: #832232;
-    border-color: #832232;
-    color: white;
-}
-
-#background {
-    background-image: url(https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1347&q=80);
-    background-size: cover;
-    height: 325px;
-    margin-top: 50px;
+    margin-top: 10px;
 }

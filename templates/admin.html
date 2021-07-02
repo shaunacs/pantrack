@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}Admin{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/admin.css">
+{% endblock %}
 
 {% block body %}
+<div id="banner">
+    <h1 id="banner-text">Admin Panel</h1>
+</div>
 <div class="container">
-    <h1>Admin Page</h1>
-    <a href="/appointments">View Upcoming Appointments</a><br>
-    <a href="/create-user-appt">Schedule an Appointment</a><br>
-    <a href="/render-send-reminders">Send Appointment Reminder SMS</a><br>
-    <a href="/create-appointment-slots">Create Available Pickup Times</a><br>
-    <a href="/delete-appointment-slots">Delete Available Pickup Times</a><br>
-    <a href="/create-new-admin">Create New Admin</a>
-    <form action="/logout">
-        <button id="log-out-button">Log Out</button>
-    </form>
+    <div class="logout">
+        <button id="log-out-button" type="button" class="btn btn-light">Log Out</button>
+    </div>
+    <div id="admin-task">
+        <a class="btn btn-lg" href="/appointments">View Upcoming Appointments</a><br>
+        <a class="btn btn-lg" href="/create-user-appt">Schedule an Appointment</a><br>
+        <a class="btn btn-lg" href="/render-send-reminders">Send Appointment Reminder SMS</a><br>
+        <a class="btn btn-lg" href="/create-appointment-slots">Create Available Pickup Times</a><br>
+        <a class="btn btn-lg" href="/delete-appointment-slots">Delete Available Pickup Times</a><br>
+        <a class="btn btn-lg" href="/create-new-admin">Create New Admin</a>
+    </div>
 </div>
 {% endblock %}
