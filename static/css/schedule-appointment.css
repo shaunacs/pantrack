@@ -29,3 +29,16 @@ h1 {
 .appts {
     text-align: center;
 }
+
+#submit {
+    background-color: #832232;
+    border-color: #832232;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.display-6 {
+    text-align: center;
+    padding: 70px 0;
+    margin-left: 20px;
+}
