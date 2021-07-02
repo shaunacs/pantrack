@@ -23,3 +23,27 @@ h1 {
     font-family: 'Roboto', sans-serif;
     margin-top: 20px;
 }
+
+.form-check-input {
+    margin-left: 5px;
+}
+
+#num-people {
+    margin-bottom: 8px;
+}
+
+i {
+    color: #832232;
+}
+
+#submit {
+    background-color: #832232;
+    border-color: #832232;
+    color: white;
+}
+
+.display-6 {
+    text-align: center;
+    padding: 70px 0;
+    margin-left: 20px;
+}

@@ -48,19 +48,19 @@ function DisplayHouseholdForm() {
 
     return (
         <div>
-            <label class="form-label">Number of people in household</label><br></br>
-            <input class="form-control" type="number" name="num-people" required></input>
+            <label class="form-label">How many people are in your household?</label><br></br>
+            <input class="form-control" type="number" name="num-people" id="num-people" required></input>
             <label class="form-label">Would you like peanut butter?</label>
             <input class="form-check-input" type="radio" name="wants-peanut-butter"  value="True"></input>
             <label class="form-check-label">Yes</label>
             <input class="form-check-input" type="radio" name="wants-peanut-butter" value="False"></input>
             <label class="form-check-label">No</label><br></br>
             {pickupInput}
-            <label class="form-label">Allergies</label><br></br>
+            <label class="form-label">Allergies?</label><br></br>
             <input class="form-control" type="text" name="allergies"></input><br></br>
-            <label class="form-label">Any special requests?</label><br></br>
+            <label class="form-label">Any special requests?<i> (Special requests are dependent upon availability)</i></label><br></br>
             <input class="form-control" type="text" name="special-requests"></input><br></br>
-            <input type="submit" name="submit"></input>
+            <input type="submit" name="submit" class="btn btn-lg" id="submit"></input>
         </div>
     )
 }
