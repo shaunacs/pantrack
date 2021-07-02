@@ -52,3 +52,10 @@ h1 {
     border-color: #832232;
     color: white;
 }
+
+#background {
+    background-image: url(https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1347&q=80);
+    background-size: cover;
+    height: 325px;
+    margin-top: 50px;
+}
