@@ -28,9 +28,17 @@ h1 {
 
 .login {
     font-family: 'Roboto', sans-serif;
-    margin-top: 20px;
+    margin-top: 80px;
 }
 
 .no-account {
     margin-top: 10px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 60%;
 }
