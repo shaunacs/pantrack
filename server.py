@@ -247,7 +247,11 @@ def render_appts_page():
     """Renders the appointments page"""
 
     if session['admin'] == True:
-        upcoming_appts = crud.view_all_upcoming_appts()
+        upcoming_appts = {}
+        all_upcoming = crud.view_all_upcoming_appts()
+        
+        for appt in all_upcoming:
+            upcoming_appts[appt] = appt.appointment_slot.start_time.strftime("%B %d, %Y %I:%M%p")
 
         return render_template('appointments.html', upcoming_appts=upcoming_appts)
     else:

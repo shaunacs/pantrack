@@ -20,7 +20,7 @@
         </tr>
         {% for appt in upcoming_appts %}
             <tr>
-                <td>{{ appt.appointment_slot.start_time }}</td>
+                <td>{{ upcoming_appts[appt] }}</td>
                 <td>{{ appt.user.fname }} {{ appt.user.lname }}</td>
                 <td>{{ appt.household.num_people }}</td>
                 {% if appt.household.wants_peanut_butter == True %}
