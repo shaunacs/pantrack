@@ -19,32 +19,13 @@ h1 {
     font-size: 200px;
 }
 
-.household-form {
-    font-family: 'Roboto', sans-serif;
+#choose {
+    font-family: 'Castoro';
     margin-top: 20px;
-}
-
-.form-check-input {
-    margin-left: 5px;
-}
-
-#num-people {
-    margin-bottom: 8px;
-}
-
-i {
-    color: #832232;
-}
-
-#submit {
-    background-color: #832232;
-    border-color: #832232;
-    color: white;
     margin-bottom: 10px;
+    text-align: center;
 }
 
-.display-6 {
+.appts {
     text-align: center;
-    padding: 70px 0;
-    margin-left: 20px;
 }

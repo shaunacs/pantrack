@@ -1,17 +1,29 @@
 {% extends 'base.html' %}
 {% block title %}Schedule Appointment{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/schedule-appointment.css">
+{% endblock %}
 
 {% block body %}
+<div id="banner">
+    <h1 id="banner-text">PanTrack</h1>
+</div>
 <div class="container">
-    <p>Choose a pick up time!</p>
-    <form action="/handle-schedule-appt" method="POST">
-    {% for appt_slot in available_appts %}
-        <input type="radio" name="appt_slot" value="{{appt_slot.start_time}}">
-        <label>{{ available_appts[appt_slot] }}</label><br>
-    {% endfor %}
-    <input type="submit" name="submit">
-    </form>
+    <div class="row">
+        <div class="col-xs-12 col-lg-6">
+            <h2 id="choose">Choose a time to pick up your food!</h2>
+            <form class="appts" action="/handle-schedule-appt" method="POST">
+            {% for appt_slot in available_appts %}
+                <input class="form-check-input" type="radio" name="appt_slot" value="{{appt_slot.start_time}}">
+                <label class="form-label">{{ available_appts[appt_slot] }}</label><br>
+            {% endfor %}
+            <input type="submit" name="submit">
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-6">Text or something goes here!</h1>
+        </div>
+    </div>
 </div>
 {% endblock %}
