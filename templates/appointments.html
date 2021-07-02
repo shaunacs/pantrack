@@ -1,24 +1,29 @@
 {% extends 'base.html' %}
 {% block title %}Appointments{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/appointments.css">
+{% endblock %}
 
 {% block body %}
 <div class="container">
     <h1>All Upcoming Appointments</h1>
-    <table class="table">
-        <tr>
-            <th>Time</th>
-            <th>Name</th>
-            <th>People in Household</th>
-            <th>Wants Peanut Butter</th>
-            <th>Picking Up for Someone Else</th>
-            <th>Picking Up For</th>
-            <th>Allergies</th>
-            <th>Special Requests</th>
-            <th>Phone Number</th>
-        </tr>
-        {% for appt in upcoming_appts %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Name</th>
+                <th scope="col">People in Household</th>
+                <th scope="col">Wants Peanut Butter</th>
+                <th scope="col">Picking Up for Someone Else</th>
+                <th scope="col">Picking Up For</th>
+                <th scope="col">Allergies</th>
+                <th scope="col">Special Requests</th>
+                <th scope="col">Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in upcoming_appts %}
             <tr>
                 <td>{{ upcoming_appts[appt] }}</td>
                 <td>{{ appt.user.fname }} {{ appt.user.lname }}</td>
@@ -43,6 +48,7 @@
                 <td>{{ appt.user.phone_number }}</td>
             </tr>
         {% endfor %}
+        </tbody>
     </table>
 </div>
 {% endblock %}
