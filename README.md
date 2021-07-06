@@ -24,4 +24,15 @@ PanTrack also consists of an Admin panel that provides the food pantry with easy
 ## How to Use PanTrack Flask App
 1. Create and activate a python virtual environment
 2. Install all dependencies
-  * `pip install -r requirements.txt`
+    * `pip install -r requirements.txt`
+3. Create a PostgreSQL database named *appointments*
+    * `createdb appointments`
+4. Create the tables in your database:
+    * Run *model.py* interactively: `python -i model.py`
+    * Create tables: `db.create_all()`
+
+**If you would like to seed the database with fake data:**
+Run `python seed_database.py` or `python demo_seed.py`
+
+5. Quit interactive mode and start the server
+    * `python server.py`
