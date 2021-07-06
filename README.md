@@ -24,4 +24,4 @@ PanTrack also consists of an Admin panel that provides the food pantry with easy
 ## How to Use PanTrack Flask App
 1. Create and activate a python virtual environment
 2. Install all dependencies
-..* 
+..* `pip install -r requirements.txt`
