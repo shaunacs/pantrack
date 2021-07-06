@@ -2,6 +2,11 @@
 
 Learn more about the developer: https://www.linkedin.com/in/shauna-saunders/
 
+## Project Description
+PanTrack is a full stack web application designed for a local food pantry to simplify the process of scheduling times for clients to pick up food. PanTrack replaces a workflow of making phone calls to schedule appointments with a simple, user-friendly, appointment scheduling process for clients. Users can create an account and are then given the flexibility to schedule their own appointments or receive reminders of their upcoming appointment.
+
+PanTrack also consists of an Admin panel that provides the food pantry with easy access to the details of appointments scheduled, control over when food is available to pick up, and the ability to send SMS appointment reminders using the Twilio API.
+
 ## Technologies Used
 - Python
 - Flask
