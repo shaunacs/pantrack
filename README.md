@@ -36,3 +36,13 @@ Run `python seed_database.py` or `python demo_seed.py`
 
 5. Quit interactive mode and start the server
     * `python server.py`
+
+### Twilio API
+**If you would like to use the SMS Appointment Reminder feature:**
+* Sign up for Twilio, and obtain an AUTH_TOKEN, ACCOUNT_SID, and PHONE_NUMBER
+* Save these keys in a file called `secrets.sh` using this format:
+```python
+export ACCOUNT_SID="YOUR_ACCOUNT_SID_HERE"
+export AUTH_TOKEN="YOUR_AUTH_TOKEN_HERE"
+export FROM_PHONE_NUMBER="YOUR_TWILIO_PHONE_NUMBER"
+```
