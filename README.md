@@ -20,3 +20,8 @@ PanTrack also consists of an Admin panel that provides the food pantry with easy
 - SQLAlchemy
 - PostgreSQL
 - Twilio API
+
+## How to Use PanTrack Flask App
+1. Create and activate a python virtual environment
+2. Install all dependencies
+..* 
