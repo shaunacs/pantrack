@@ -36,6 +36,7 @@ Run `python seed_database.py` or `python demo_seed.py`
 
 5. Quit interactive mode and start the server
     * `python server.py`
+6. Navigate to `localhost` to access PanTrack
 
 ### Twilio API
 **If you would like to use the SMS Appointment Reminder feature:**
@@ -46,3 +47,7 @@ export ACCOUNT_SID="YOUR_ACCOUNT_SID_HERE"
 export AUTH_TOKEN="YOUR_AUTH_TOKEN_HERE"
 export FROM_PHONE_NUMBER="YOUR_TWILIO_PHONE_NUMBER"
 ```
+
+* Source your keys from your `secrets.sh` file into your virtual environment:
+    * `source secrets.sh`
+* Run the server `python server.py`
