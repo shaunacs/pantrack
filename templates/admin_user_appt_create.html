@@ -8,7 +8,11 @@
 {% block body %}
 <div class="container">
     <h1>Household Info</h1>
-    <form action="/handle-admin-create-user-household" method="POST" id="user-appt"></form>
+    <div class="row">
+        <div class="col-xs-12 col-lg-6">
+            <form action="/handle-admin-create-user-household" method="POST" id="user-appt"></form>
+        </div>
+    </div>
 
     <script type="text/jsx" src="/static/jsx/admin_create_appt.jsx"></script>
 </div>
