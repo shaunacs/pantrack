@@ -53,7 +53,7 @@ function DisplayUserApptForm() {
             <label class="form-label">Last Name</label>
             <input class="form-control form-control-sm" type="text" name="lname" required></input><br></br>
             <label class="form-label">Phone Number</label>
-            <input class="form-control form-control-sm" type="tel" name="phone-number" pattern="[0-9]{10}"></input><br></br>
+            <input class="form-control form-control-sm" type="tel" id="phone-number" name="phone-number" pattern="[0-9]{10}"></input><br></br>
             <small>Format: 1234567890</small><br></br>
             <label class="form-label">Number of people in household</label>
             <input class="form-control" type="number" name="num-people" required></input><br></br>
@@ -63,10 +63,10 @@ function DisplayUserApptForm() {
             <input class="form-check-input" type="radio" name="wants-peanut-butter" value="False"></input>
             <label class="form-check-label">No</label><br></br>
             {pickupInput}
-            <input class="form-control" type="text" name="allergies"></input>
-            <label class="form-label">Allergies</label><br></br>
-            <input class="form-control" type="text" name="special-requests"></input>
+            <label class="form-label">Allergies?</label><br></br>
+            <input class="form-control" type="text" name="allergies"></input><br></br>
             <label class="form-label">Any special requests?</label><br></br>
+            <input class="form-control" type="text" name="special-requests"></input><br></br>
             <input class="btn btn-lg" type="submit" name="submit"></input>
         </div>
     )

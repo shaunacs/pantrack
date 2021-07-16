@@ -5,3 +5,22 @@ h1 {
     text-align: center;
     margin-top: 20px;
 }
+
+.form-check-input {
+    margin-left: 5px;
+}
+
+.form-check-label {
+    margin-left: 2px;
+}
+
+#phone-number {
+    margin-bottom: 5px;
+}
+
+.btn {
+    margin-top: 5px;
+    background-color: #832232;
+    color: white;
+    margin-bottom: 10px;
+}
