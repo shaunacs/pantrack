@@ -10,3 +10,7 @@ $('#cancel-appt').on('click', () => {
 $('#log-out-button').on('click', () => {
     location.href = "/logout"
 })
+
+// $('#log-in').on('mouseover', () => {
+//     $('log-in').css('background-color', 'gray')
+// })
