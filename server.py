@@ -439,7 +439,8 @@ def handle_admin_create_user_household():
     return render_template('admin_schedule_appt.html',
                             available_appts=available_appts,
                             user_id=user.user_id,
-                            household_id=household.household_id)
+                            household_id=household.household_id,
+                            fname=fname, lname=lname)
 
 
 @app.route('/handle-admin-create-appt', methods=["POST"])
