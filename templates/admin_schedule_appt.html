@@ -5,14 +5,11 @@
 
 {% block body %}
 <div class="container">
-    <p>Client Appointment ID: {{ user_id }}</p>
-    <p>Household Appointment ID: {{ household_id }}</p>
-    <i>Please confirm that the ID #s in the fields below match the #s above.</i>
     <form action="/handle-admin-create-appt" method="POST">
-        <label>Client Appointment ID:</label>
-        <input type="number" name="user-id" required value="{{ user_id }}"><br>
-        <label>Household Appointment ID:</label>
-        <input type="number" name="household-id" required value="{{ household_id }}"><br>
+        <label hidden>Client Appointment ID:</label>
+        <input hidden type="number" name="user-id" required value="{{ user_id }}"><br>
+        <label hidden>Household Appointment ID:</label>
+        <input hidden type="number" name="household-id" required value="{{ household_id }}"><br>
         <p>Choose a pick up time for {{fname}} {{lname}}!</p>
     {% for appt_slot in available_appts %}
         <input type="radio" name="appt_slot" value="{{appt_slot.start_time}}">
