@@ -2,22 +2,33 @@
 {% block title %}Admin Create Appointment Slots{% endblock %}
 
 {% block head %}{% endblock %}
-
+{% block custom %}
+<link rel="stylesheet" href="/static/css/admin-appt-slot.css">
+{% endblock %}
 {% block body %}
 <div class="container">
-<h1>Create Appointment Slots</h1>
-    <form action="/handle-create-appt-slots" method="POST">
-        <label>Start Time</label>
-        <input type="datetime-local" name="start-time" required><br>
+    <div class="row">
+        <h1>Create Appointment Slots</h1>
+        <h4>Create times available for clients to pick up food</h4>
+        <p>Select what time you would like to begin appointments, end appointments, and time between each appointment</p>
+        <p>Appointment slots will then be created at your chosen interval from start time to end time</p>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-lg-4">
+            <form action="/handle-create-appt-slots" method="POST">
+                <label>Start Time</label>
+                <input class="form-control form-control-sm" type="datetime-local" name="start-time" required><br>
+                
+                <label class="form-label">End Time</label>
+                <input class="form-control form-control-sm" type="datetime-local" name="end-time" required><br>
+                
+                <label class="form-label">Minutes Between Each Appointment</label>
+                <input class="form-control form-control-sm" type="number" name="time-delta" required><br>
         
-        <label>End Time</label>
-        <input type="datetime-local" name="end-time" required><br>
-        
-        <label>Minutes Between Each Appointment</label>
-        <input type="number" name="time-delta" required><br>
-
-        <input type="submit" name="submit">
-
-    </form>
+                <input type="submit" name="submit">
+            </form>
+        </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
