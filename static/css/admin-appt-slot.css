@@ -2,3 +2,11 @@ h1 {
     text-align: center;
     margin-top: 10px;
 }
+
+.btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #832232;
+    color: white;
+    margin-bottom: 10px;
+}
