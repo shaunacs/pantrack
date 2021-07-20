@@ -277,10 +277,11 @@ def handle_create_appt_slots():
     # Changing start time and end times to datetime objects
     date_format = "%Y-%m-%dT%H:%M"
     start_time = datetime.strptime(start_time_str, date_format)
-    print("*" * 20)
-    print(start_time)
-    print(type(start_time))
     end_appts = datetime.strptime(end_appts_str, date_format)
+
+    if int(request.form.get('time-delta')) < 0:
+        flash('Please enter a positive number')
+        return redirect('/create-appointment-slots')
 
     desired_delta = int(request.form.get('time-delta'))
     delta = timedelta(minutes=desired_delta)
