@@ -6,23 +6,28 @@
 {% block body %}
 <div class="container">
     <h1>Create New Admin</h1>
-    <form action="handle-new-admin" method="POST">
-        <label>First Name</label>
-        <input type="text" name="fname"><br>
-
-        <label>Last Name</label>
-        <input type="text" name="lname"><br>
-
-        <label>Email</label>
-        <input type="email" name="email"><br>
-
-        <label>Username</label>
-        <input type="text" name="username"><br>
-
-        <label>Password</label>
-        <input type="password" name="password"><br>
-
-        <input type="submit" name="submit">
-    </form>
+    <p>Create a new user with Admin credentials</p>
+    <div class="row">
+        <div class="col-xs-12 col-lg-4">
+            <form action="handle-new-admin" method="POST">
+                <label class="form-label">First Name</label>
+                <input class="form-control form-control-sm" type="text" name="fname"><br>
+        
+                <label class="form-label">Last Name</label>
+                <input class="form-control form-control-sm" type="text" name="lname"><br>
+        
+                <label class="form-label">Email</label>
+                <input class="form-control form-control-sm" type="email" name="email"><br>
+        
+                <label class="form-label">Username</label>
+                <input class="form-control form-control-sm" type="text" name="username"><br>
+        
+                <label class="form-label">Password</label>
+                <input class="form-control form-control-sm" type="password" name="password"><br>
+        
+                <input type="submit" name="submit">
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
