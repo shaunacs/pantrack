@@ -229,7 +229,13 @@ def render_admin_page():
     """Renders admin homepage"""
 
     if session['admin'] == True:
-        return render_template('admin.html')
+        admin = Admin.query.filter_by(username=session['username']).first()
+        if admin.super_admin:
+            super_admin = True
+            return render_template('admin.html', super_admin=super_admin)
+        else:
+            super_admin = False
+            return render_template('admin.html', super_admin=super_admin)
     else:
         flash('You do not have access to this page')
         return redirect('/')
@@ -362,6 +368,7 @@ def handle_new_admin():
     email = request.form.get('email')
     username = request.form.get('username')
     password = request.form.get('password')
+    super_admin = False
 
     if username in crud.view_all_usernames():
         flash('Username already taken')
@@ -373,7 +380,7 @@ def handle_new_admin():
         crud.create_admin(fname, lname, email, username, password)
 
         flash(f'{fname} {lname} now has admin access.')
-        return redirect('/')
+        return redirect('/', super_admin=super_admin)
 
 
 @app.route('/create-user-appt')

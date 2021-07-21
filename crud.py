@@ -6,11 +6,12 @@ from twilio.rest import Client
 import os
 
 
-def create_admin(fname, lname, email, username, password):
+def create_admin(fname, lname, email, username, password, super_admin=False):
     """Creates an admin user"""
 
     admin = Admin(fname=fname, lname=lname, email=email,
-                    username=username, password=password)
+                    username=username, password=password,
+                    super_admin=super_admin)
     
     db.session.add(admin)
     db.session.commit()
@@ -21,7 +22,6 @@ def create_user(fname, lname, email=None, username=None, password=None, phone_nu
     user = User(fname=fname, lname=lname, email=email, username=username,
                 password=password, phone_number=phone_number)
     
-    # print(user)
     db.session.add(user)
     db.session.commit()
 

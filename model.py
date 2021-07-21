@@ -21,6 +21,7 @@ class Admin(db.Model, UserMixin):
     email = db.Column(db.String(100), unique=True)
     username = db.Column(db.String(30), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
+    super_admin = db.Column(db.Boolean)
 
     def get_id(self):
         """Override UserMixin.get_id"""
@@ -138,7 +139,8 @@ def create_sample_data():
                     lname='Adminder',
                     email='admin@test.test',
                     username='admin',
-                    password='test')
+                    password='test',
+                    super_admin=True)
     
     db.session.add(admin)
     db.session.commit()

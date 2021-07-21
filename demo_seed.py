@@ -19,7 +19,8 @@ admin = crud.create_admin(fname='Adminy',
                     lname='Adminder',
                     email='admin@test.test',
                     username='admin',
-                    password='test')
+                    password='test',
+                    super_admin=True)
 
 fake = Faker()
 # create test users

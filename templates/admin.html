@@ -20,6 +20,10 @@
         <a class="btn btn-lg" href="/create-appointment-slots">Create Available Pickup Times</a><br>
         <a class="btn btn-lg" href="/delete-appointment-slots">Delete Available Pickup Times</a><br>
         <a class="btn btn-lg" href="/create-new-admin">Create New Admin</a>
+        {% if super_admin %}
+            <br>
+            <a class="btn btn-lg">Delete Admin</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
