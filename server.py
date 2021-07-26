@@ -80,7 +80,12 @@ def handle_log_in():
                 login_user(admin) # ***
                 session['username'] = request.form.get('username')
                 session['admin'] = True
-                return redirect('/admin')
+                if admin.super_admin:
+                    super_admin = True
+                    return render_template('admin.html', super_admin=super_admin)
+                else:
+                    super_admin = False
+                    return render_template('admin.html', super_admin=super_admin)
 
 
     if user.password == password:
@@ -380,7 +385,7 @@ def handle_new_admin():
         crud.create_admin(fname, lname, email, username, password)
 
         flash(f'{fname} {lname} now has admin access.')
-        return redirect('/', super_admin=super_admin)
+        return redirect('/')
 
 
 @app.route('/create-user-appt')
