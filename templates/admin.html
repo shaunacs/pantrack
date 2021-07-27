@@ -18,10 +18,10 @@
         <a class="btn btn-lg" href="/create-user-appt">Schedule an Appointment</a><br>
         <a class="btn btn-lg" href="/render-send-reminders">Send Appointment Reminder SMS</a><br>
         <a class="btn btn-lg" href="/create-appointment-slots">Create Available Pickup Times</a><br>
-        <a class="btn btn-lg" href="/delete-appointment-slots">Delete Available Pickup Times</a><br>
-        <a class="btn btn-lg" href="/create-new-admin">Create New Admin</a>
+        <a class="btn btn-lg" href="/delete-appointment-slots">Delete Available Pickup Times</a>
         {% if current_user.super_admin %}
             <br>
+            <a class="btn btn-lg" href="/create-new-admin">Create New Admin</a><br>
             <a class="btn btn-lg">Delete Admin</a>
         {% endif %}
     </div>
