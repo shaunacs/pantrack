@@ -373,7 +373,11 @@ def handle_new_admin():
     email = request.form.get('email')
     username = request.form.get('username')
     password = request.form.get('password')
-    super_admin = False
+    super_admin = request.form.get('super-admin')
+    if super_admin == "True":
+        super_admin = True
+    elif super_admin == "False":
+        super_admin = False
 
     if username in crud.view_all_usernames():
         flash('Username already taken')
@@ -382,7 +386,7 @@ def handle_new_admin():
         flash('Username already taken')
         return redirect('/create-new-admin')      
     else:
-        crud.create_admin(fname, lname, email, username, password)
+        crud.create_admin(fname, lname, email, username, password, super_admin)
 
         flash(f'{fname} {lname} now has admin access.')
         return redirect('/')
