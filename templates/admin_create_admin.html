@@ -8,7 +8,7 @@
     <h1>Create New Admin</h1>
     <p>Create a new user with Admin credentials</p>
     <div class="row">
-        <div class="col-xs-12 col-lg-4">
+        <div class="col-xs-12 col-lg-5">
             <form action="handle-new-admin" method="POST">
                 <label class="form-label">First Name</label>
                 <input class="form-control form-control-sm" type="text" name="fname"><br>
@@ -24,6 +24,13 @@
         
                 <label class="form-label">Password</label>
                 <input class="form-control form-control-sm" type="password" name="password"><br>
+
+                <label class="form-label">Complete Admin Access?<br>
+                    <i>(This will give them the ability to create and delete Admin)</i></label><br>
+                <input class="form-check-input" type="radio" name="super-admin" value="True">
+                <label class="form-check-label">Yes</label>
+                <input class="form-check-input" type="radio" name="super-admin" value="False" defaultChecked>
+                <label class="form-check-label">No</label><br>
         
                 <input type="submit" name="submit">
             </form>
