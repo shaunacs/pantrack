@@ -503,6 +503,12 @@ def handle_send_reminders():
     
     return redirect('/')
 
+@app.route('/delete-admin')
+def render_delete_admin_page():
+    """Renders page for super admin to delete admin"""
+
+    return render_template('delete_admin.html')
+
 
 if __name__ == '__main__':
     connect_to_db(app)
