@@ -80,6 +80,12 @@ def view_all_users():
     return User.query.all()
 
 
+def view_all_admin():
+    """Returns all Admin"""
+
+    return Admin.query.all()
+
+
 def view_all_appt_slots():
     """Returns all appointment slots"""
 
