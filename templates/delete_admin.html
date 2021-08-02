@@ -14,7 +14,12 @@
                 </tr>
             </thead>
             <tbody>
-                <p>List of Admin will go here</p>
+                {% for admin in all_admin %}
+                <tr>
+                    <td><input class="form-check-input" type="checkbox" name="admin" value="{{admin.admin_id}}"></td>
+                    <td>{{ admin.fname }} {{ admin.lname }}</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
         <input type="submit" name="submit" class="btn btn-lg">

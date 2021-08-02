@@ -504,10 +504,18 @@ def handle_send_reminders():
     return redirect('/')
 
 @app.route('/delete-admin')
+@login_required
 def render_delete_admin_page():
     """Renders page for super admin to delete admin"""
 
-    return render_template('delete_admin.html')
+    if session['admin'] == True:
+        all_admin = crud.view_all_admin()
+
+        return render_template('delete_admin.html', all_admin=all_admin)
+    else:
+        flash('You do not have access to this page.')
+        return redirect('/')
+
 
 
 if __name__ == '__main__':
