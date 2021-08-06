@@ -32,6 +32,8 @@ def render_hompeage():
     """Displays the homepage is user in session"""
 
     if current_user.is_authenticated:
+        print("*" * 25)
+        print(type(current_user))
         if session['admin'] == True:
             return render_template('admin.html')
 
@@ -516,6 +518,21 @@ def render_delete_admin_page():
         flash('You do not have access to this page.')
         return redirect('/')
 
+
+@app.route('/handle-delete-admin')
+@login_required
+def handle_delete_admin():
+    """Handles the deletion of selected Admin"""
+
+    admin_ids = request.form.getlist('admin')
+
+    print("*" * 25)
+    print(type(admin_ids))
+    print(admin_id)
+
+    flash('Admin deleted')
+
+    return redirect('/')
 
 
 if __name__ == '__main__':
