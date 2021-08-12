@@ -30,11 +30,15 @@ def load_user(user_id):
 @app.route('/')
 def render_hompeage():
     """Displays the homepage is user in session"""
+    print(current_user)
 
     if current_user.is_authenticated:
-        print("*" * 25)
-        print(type(current_user))
         if session['admin'] == True:
+            admin = Admin.query.filter_by(username=session['username']).first()
+            @login_manager.user_loader
+            def load_admin(admin_id):
+                return Admin.query.get(admin_id)
+            login_user(admin)
             return render_template('admin.html')
 
 
