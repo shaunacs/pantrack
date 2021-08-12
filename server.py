@@ -523,16 +523,12 @@ def render_delete_admin_page():
         return redirect('/')
 
 
-@app.route('/handle-delete-admin')
+@app.route('/handle-delete-admin', methods=["POST"])
 @login_required
 def handle_delete_admin():
     """Handles the deletion of selected Admin"""
 
     admin_ids = request.form.getlist('admin')
-
-    print("*" * 25)
-    print(type(admin_ids))
-    print(admin_id)
 
     flash('Admin deleted')
 
