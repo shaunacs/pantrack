@@ -530,7 +530,10 @@ def handle_delete_admin():
 
     admin_ids = request.form.getlist('admin')
 
-    flash('Admin deleted')
+    for idx, admin_id in enumerate(admin_ids):
+        admin_ids[idx] = int(admin_id)
+
+    flash(admin_ids)
 
     return redirect('/')
 
