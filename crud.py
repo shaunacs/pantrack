@@ -153,6 +153,12 @@ def delete_ApptSlot(start_time):
 
     return f'You just deleted {appt_slot_to_delete}!'
 
+
+# def delete_Admin(admin_id):
+#     """Deletes an Admin by Admin id"""
+
+    
+
 def view_all_usernames():
     """Returns a list of all usernames"""
 
