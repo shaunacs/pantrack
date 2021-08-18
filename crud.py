@@ -154,8 +154,15 @@ def delete_ApptSlot(start_time):
     return f'You just deleted {appt_slot_to_delete}!'
 
 
-# def delete_Admin(admin_id):
-#     """Deletes an Admin by Admin id"""
+def delete_Admin(admin_id):
+    """Deletes an Admin by Admin id"""
+
+    admin_to_delete = Admin.query.filter(Admin.admin_id == admin_id).first()
+
+    db.session.delete(admin_to_delete)
+    db.session.commit()
+
+    return f'You just deleted {admin_to_delete.fname} {admin_to_delete.lname}!'
 
     
 

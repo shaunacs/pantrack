@@ -532,8 +532,11 @@ def handle_delete_admin():
 
     for idx, admin_id in enumerate(admin_ids):
         admin_ids[idx] = int(admin_id)
+    
+    for admin in admin_ids:
+        crud.delete_Admin(admin)
 
-    flash(admin_ids)
+    flash('Admin deleted.')
 
     return redirect('/')
 
