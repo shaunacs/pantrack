@@ -56,6 +56,12 @@ class User(db.Model, UserMixin):
         """Override UserMixin.get_id"""
 
         return str(self.user_id)
+    
+
+    def as_dict(self):
+        """Returns User as dictionary"""
+
+        return {"fname": self.fname, "lname": self.lname, "email": self.email, "username": self.username}
 
 
     def __repr__(self):
